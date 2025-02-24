@@ -1,0 +1,2254 @@
+recipe_id,ingredient,cuisine
+44902,sugar,southern_us
+44902,large eggs,southern_us
+44902,all-purpose flour,southern_us
+44902,baking soda,southern_us
+44902,buttermilk,southern_us
+44902,honey,southern_us
+44902,corn oil,southern_us
+44902,yellow corn meal,southern_us
+44902,unsalted butter,southern_us
+44902,salt,southern_us
+39600,boneless chicken skinless thigh,mexican
+39600,lime,mexican
+39600,epazote,mexican
+39600,bay leaf,mexican
+39600,lime juice,mexican
+39600,radishes,mexican
+39600,salt,mexican
+39600,oregano,mexican
+39600,white onion,mexican
+39600,hominy,mexican
+39600,garlic,mexican
+39600,chopped cilantro,mexican
+39600,avocado,mexican
+39600,fresh cilantro,mexican
+39600,tomatillos,mexican
+39600,pepitas,mexican
+39600,canola oil,mexican
+48576,pepper,irish
+48576,potatoes,irish
+48576,butter,irish
+48576,salt,irish
+48576,onions,irish
+48576,tomato paste,irish
+48576,olive oil,irish
+48576,beef stock,irish
+48576,diced tomatoes,irish
+48576,carrots,irish
+48576,sugar,irish
+48576,baking soda,irish
+48576,baking powder,irish
+48576,rosemary leaves,irish
+48576,lean steak,irish
+48576,water,irish
+48576,flour,irish
+48576,buttermilk,irish
+48576,Guinness Lager,irish
+48576,dried rosemary,irish
+46635,fresh ginger,indian
+46635,paprika,indian
+46635,garlic cloves,indian
+46635,fresh lemon,indian
+46635,ground coriander,indian
+46635,ground turmeric,indian
+46635,jalapeno chilies,indian
+46635,salt,indian
+46635,chopped cilantro fresh,indian
+46635,vegetable oil,indian
+46635,catfish,indian
+4615,ground nutmeg,mexican
+4615,salt,mexican
+4615,red pepper,mexican
+4615,ground cumin,mexican
+4615,chili powder,mexican
+4615,cayenne pepper,mexican
+4615,garlic powder,mexican
+4615,paprika,mexican
+26091,parmigiano-reggiano cheese,italian
+26091,worcestershire sauce,italian
+26091,garlic cloves,italian
+26091,water,italian
+26091,salt,italian
+26091,fresh mint,italian
+26091,baguette,italian
+26091,extra-virgin olive oil,italian
+26091,fresh lemon juice,italian
+26091,eggs,italian
+26091,ground black pepper,italian
+26091,anchovy fillets,italian
+26091,arugula,italian
+15077,sugar,french
+15077,chopped almonds,french
+15077,Grand Marnier,french
+15077,melted butter,french
+15077,milk,french
+15077,salt,french
+15077,pastry cream,french
+15077,flour,french
+15077,cognac,french
+15077,eggs,french
+15077,bananas,french
+15077,grated lemon zest,french
+11669,suet,irish
+11669,cooked barley,irish
+11669,skim milk,irish
+11669,dried mint flakes,irish
+11669,bread,irish
+11669,ground black pepper,irish
+11669,oatmeal,irish
+11669,pork blood,irish
+11669,salt,irish
+35771,sweet onion,southern_us
+35771,salt,southern_us
+35771,collard greens,southern_us
+35771,olive oil,southern_us
+42269,vegetable oil,chinese
+42269,milk,chinese
+42269,all-purpose flour,chinese
+42269,sugar,chinese
+42269,salt,chinese
+42269,active dry yeast,chinese
+21673,fat free milk,southern_us
+21673,all-purpose flour,southern_us
+21673,black pepper,southern_us
+21673,worcestershire sauce,southern_us
+21673,"cream cheese, soften",southern_us
+21673,reduced fat cheddar cheese,southern_us
+21673,dijon mustard,southern_us
+21673,elbow macaroni,southern_us
+21673,minced garlic,southern_us
+21673,salt,southern_us
+35998,black pepper,jamaican
+35998,dried salted codfish,jamaican
+35998,onions,jamaican
+35998,ackee,jamaican
+35998,garlic cloves,jamaican
+35998,pepper,jamaican
+35998,salt,jamaican
+35998,tomatoes,jamaican
+35998,vegetable oil,jamaican
+35998,thyme,jamaican
+14566,pepper,mexican
+14566,loin pork roast,mexican
+14566,cumin,mexican
+14566,brown sugar,mexican
+14566,garlic powder,mexican
+14566,green chilies,mexican
+14566,coke zero,mexican
+14566,water,mexican
+14566,salt,mexican
+14566,tomato sauce,mexican
+14566,chili powder,mexican
+14566,chipotles in adobo,mexican
+48251,hot red pepper flakes,italian
+48251,olive oil,italian
+48251,salt,italian
+48251,fresh parsley leaves,italian
+48251,plum tomatoes,italian
+48251,active dry yeast,italian
+48251,"green bell pepper, slice",italian
+48251,garlic cloves,italian
+48251,onions,italian
+48251,sugar,italian
+48251,freshly grated parmesan,italian
+48251,all-purpose flour,italian
+48251,red bell pepper,italian
+48251,mozzarella cheese,italian
+48251,fennel bulb,italian
+48251,provolone cheese,italian
+48251,crumbled gorgonzola,italian
+30191,Fuji Apple,korean
+30191,green onions,korean
+30191,Gochujang base,korean
+30191,soy sauce,korean
+30191,ginger,korean
+30191,pears,korean
+30191,pork,korean
+30191,sesame oil,korean
+30191,onions,korean
+30191,sugar,korean
+30191,pepper,korean
+30191,garlic,korean
+4104,jalapeno chilies,cajun_creole
+4104,salt,cajun_creole
+4104,peanuts,cajun_creole
+4104,red pepper flakes,cajun_creole
+4104,garlic powder,cajun_creole
+4104,shells,cajun_creole
+4104,cajun seasoning,cajun_creole
+4104,crab boil,cajun_creole
+14000,marsala wine,italian
+14000,carrots,italian
+14000,nutmeg,italian
+14000,unsalted butter,italian
+14000,ground black pepper,italian
+14000,sugar,italian
+14000,salt,italian
+32397,sugar,french
+32397,grapefruit juice,french
+32397,salt,french
+32397,fresh lemon juice,french
+32397,fresh lime juice,french
+32397,pepper,french
+32397,dry red wine,french
+32397,lemon rind,french
+32397,low salt chicken broth,french
+32397,water,french
+32397,white wine vinegar,french
+32397,grapefruit,french
+32397,orange rind,french
+32397,lime rind,french
+32397,fresh orange juice,french
+32397,margarine,french
+32397,corn starch,french
+32397,chicken thighs,french
+49630,sugar,vietnamese
+49630,napa cabbage,vietnamese
+49630,red bell pepper,vietnamese
+49630,ground black pepper,vietnamese
+49630,rice vermicelli,vietnamese
+49630,medium shrimp,vietnamese
+49630,lemongrass,vietnamese
+49630,cilantro,vietnamese
+49630,fresh mint,vietnamese
+49630,fish sauce,vietnamese
+49630,bibb lettuce,vietnamese
+49630,carrots,vietnamese
+49630,rice paper,vietnamese
+18435,large egg yolks,french
+18435,ruby red grapefruit,french
+18435,dessert wine,french
+18435,sugar,french
+22137,mirin,japanese
+22137,soy sauce,japanese
+22137,sugar,japanese
+22137,vegetable oil,japanese
+22137,salmon,japanese
+35177,ricotta,italian
+35177,tomato sauce,italian
+35177,spaghetti squash,italian
+35177,salt,italian
+9048,baking soda,british
+9048,vanilla extract,british
+9048,lemon juice,british
+9048,white sugar,british
+9048,shortening,british
+9048,butter,british
+9048,all-purpose flour,british
+9048,corn starch,british
+9048,ground cloves,british
+9048,raisins,british
+9048,chopped walnuts,british
+9048,hot water,british
+9048,ground cinnamon,british
+9048,ground nutmeg,british
+9048,salt,british
+9048,carrots,british
+18156,pepper,italian
+18156,lemon,italian
+18156,shredded mozzarella cheese,italian
+18156,romano cheese,italian
+18156,zucchini,italian
+18156,salt,italian
+18156,olive oil,italian
+18156,garlic,italian
+18156,bread crumbs,italian
+18156,chicken cutlets,italian
+18156,non stick spray,italian
+31381,extra-virgin olive oil,italian
+31381,onions,italian
+31381,black pepper,italian
+31381,tuna packed in olive oil,italian
+31381,salt,italian
+31381,Ciabatta rolls,italian
+31381,lemon juice,italian
+5001,large eggs,french
+5001,salt,french
+5001,sugar,french
+5001,whole milk,french
+5001,bittersweet chocolate,french
+5001,unflavored gelatin,french
+5001,dried apricot,french
+5001,fresh lemon juice,french
+5001,large egg yolks,french
+5001,heavy cream,french
+5001,apricots,french
+19765,vanilla,mexican
+19765,unsalted butter,mexican
+19765,all-purpose flour,mexican
+19765,salt,mexican
+19765,chop fine pecan,mexican
+19765,confectioners sugar,mexican
+44319,olive oil,italian
+44319,sugar,italian
+44319,meyer lemon,italian
+44319,water,italian
+28378,grated orange peel,southern_us
+28378,baking powder,southern_us
+28378,salt,southern_us
+28378,unsalted butter,southern_us
+28378,ice cream,southern_us
+28378,sour cream,southern_us
+28378,yellow corn meal,southern_us
+28378,large eggs,southern_us
+28378,vanilla extract,southern_us
+28378,sugar cubes,southern_us
+28378,sugar,southern_us
+28378,compote,southern_us
+28378,all-purpose flour,southern_us
+17344,sugar,italian
+17344,coarse salt,italian
+17344,fresh rosemary,italian
+17344,freshly grated parmesan,italian
+17344,warm water,italian
+17344,all-purpose flour,italian
+17344,table salt,italian
+17344,instant yeast,italian
+16394,cinnamon,mexican
+16394,sugar,mexican
+16394,apple pie filling,mexican
+16394,butter,mexican
+16394,tortillas,mexican
+20011,sugar,french
+20011,cold water,french
+20011,armagnac,french
+20011,prunes,french
+20011,fresh orange juice,french
+23664,sugar,british
+23664,salt,british
+23664,whole milk,british
+23664,baking powder,british
+23664,suet,british
+23664,all-purpose flour,british
+26028,sugar,russian
+26028,oil,russian
+26028,raisins,russian
+26028,baking powder,russian
+26028,eggs,russian
+26028,all-purpose flour,russian
+17212,water,indian
+17212,fresh lime juice,indian
+17212,sugar,indian
+17212,salt,indian
+17212,white onion,indian
+17212,fresh mint,indian
+17212,green chile,indian
+17212,cilantro sprigs,indian
+3849,sugar,southern_us
+3849,baking powder,southern_us
+3849,maple syrup,southern_us
+3849,baking soda,southern_us
+3849,buttermilk,southern_us
+3849,sliced green onions,southern_us
+3849,chicken breast tenders,southern_us
+3849,butter,southern_us
+3849,all-purpose flour,southern_us
+3849,large eggs,southern_us
+3849,salt,southern_us
+19176,water,korean
+19176,sea salt,korean
+19176,sugar,korean
+19176,potatoes,korean
+19176,onions,korean
+19176,red chili powder,korean
+19176,sesame seeds,korean
+19176,green chilies,korean
+19176,red chili peppers,korean
+19176,green leaf lettuce,korean
+19176,chopped garlic,korean
+37146,sugar,japanese
+37146,mirin,japanese
+37146,kosher salt,japanese
+37146,vegetable oil,japanese
+37146,soy sauce,japanese
+37146,flank steak,japanese
+37146,sake,japanese
+37146,water,japanese
+37146,scallions,japanese
+21418,red chili powder,indian
+21418,ginger,indian
+21418,oil,indian
+21418,amchur,indian
+21418,green chilies,indian
+21418,coriander,indian
+21418,tumeric,indian
+21418,salt,indian
+21418,chopped cilantro,indian
+21418,potatoes,indian
+21418,cumin seed,indian
+21418,asafetida,indian
+20057,whole milk yoghurt,indian
+20057,onions,indian
+20057,kosher salt,indian
+20057,all-purpose flour,indian
+20057,active dry yeast,indian
+20057,ghee,indian
+20057,sugar,indian
+20057,whole milk,indian
+36792,sugar,italian
+36792,compote,italian
+36792,almonds,italian
+36792,shortbread,italian
+36792,raspberries,italian
+36792,heavy cream,italian
+36792,large eggs,italian
+29530,milk,french
+29530,vanilla,french
+29530,sugar,french
+29530,large egg yolks,french
+21058,baking soda,southern_us
+21058,salt,southern_us
+21058,baking powder,southern_us
+21058,cream cheese,southern_us
+21058,unsalted butter,southern_us
+21058,all-purpose flour,southern_us
+21058,sugar,southern_us
+21058,buttermilk,southern_us
+21058,corn starch,southern_us
+19644,straw mushrooms,chinese
+19644,sesame oil,chinese
+19644,oyster sauce,chinese
+19644,cashew nuts,chinese
+19644,sugar,chinese
+19644,egg whites,chinese
+19644,salt,chinese
+19644,shrimp,chinese
+19644,water,chinese
+19644,ginger,chinese
+19644,carrots,chinese
+19644,snow peas,chinese
+19644,white pepper,chinese
+19644,Shaoxing wine,chinese
+19644,oil,chinese
+19644,corn starch,chinese
+34987,cheddar cheese,mexican
+34987,corn tortillas,mexican
+34987,canola oil,mexican
+34987,jalapeno chilies,mexican
+34987,reduced sodium canned chicken broth,mexican
+34987,pepper,mexican
+34987,onions,mexican
+34987,salt,mexican
+34987,chopped garlic,mexican
+40200,chicken broth,mexican
+40200,chicken breasts,mexican
+40200,cilantro,mexican
+40200,scallions,mexican
+40200,onions,mexican
+40200,kosher salt,mexican
+40200,vegetable oil,mexican
+40200,fat-free chicken broth,mexican
+40200,nonstick spray,mexican
+40200,cumin,mexican
+40200,tomato sauce,mexican
+40200,chili powder,mexican
+40200,garlic,mexican
+40200,Mexican cheese,mexican
+40200,dried oregano,mexican
+40200,pepper,mexican
+40200,whole wheat tortillas,mexican
+40200,salt,mexican
+40200,chipotles in adobo,mexican
+40200,ground cumin,mexican
+41510,cointreau,french
+41510,large eggs,french
+41510,bittersweet chocolate,french
+41510,prunes,french
+41510,unsalted butter,french
+41510,heavy cream,french
+41510,orange zest,french
+41510,sugar,french
+41510,half & half,french
+41510,armagnac,french
+41510,vanilla beans,french
+41510,creme anglaise,french
+41510,grated orange,french
+40610,butternut squash,southern_us
+40610,cornmeal,southern_us
+40610,milk,southern_us
+40610,all-purpose flour,southern_us
+40610,eggs,southern_us
+40610,salt,southern_us
+40610,garlic salt,southern_us
+40610,ground black pepper,southern_us
+40610,oil,southern_us
+35652,salt,chinese
+35652,ground black pepper,chinese
+35652,lard,chinese
+35652,grated nutmeg,chinese
+35652,szechwan peppercorns,chinese
+35652,pork butt,chinese
+35314,milk,british
+35314,eggs,british
+35314,all-purpose flour,british
+35314,beef drippings,british
+35314,salt,british
+40120,fish sauce,korean
+40120,green onions,korean
+40120,ginger,korean
+40120,sweet rice flour,korean
+40120,kosher salt,korean
+40120,daikon,korean
+40120,carrots,korean
+40120,water,korean
+40120,red pepper flakes,korean
+40120,shrimp,korean
+40120,sugar,korean
+40120,napa cabbage,korean
+40120,garlic cloves,korean
+36042,granulated sugar,japanese
+36042,dipping sauces,japanese
+36042,decorating sugars,japanese
+36042,all-purpose flour,japanese
+36042,large egg yolks,japanese
+36042,butter,japanese
+36042,large eggs,japanese
+36042,salt,japanese
+6954,baking soda,chinese
+6954,vegetable oil,chinese
+6954,corn starch,chinese
+6954,sugar,chinese
+6954,flour,chinese
+6954,rice vinegar,chinese
+6954,brown sugar,chinese
+6954,reduced sodium soy sauce,chinese
+6954,garlic,chinese
+6954,water,chinese
+6954,boneless skinless chicken breasts,chinese
+6954,broccoli,chinese
+33579,large egg yolks,thai
+33579,salt,thai
+33579,whole milk,thai
+33579,coconut milk,thai
+33579,granulated sugar,thai
+33579,corn starch,thai
+33579,white bread,thai
+33579,pandanus leaf,thai
+22930,baking soda,cajun_creole
+22930,oil,cajun_creole
+22930,whole milk,cajun_creole
+22930,confectioners sugar,cajun_creole
+22930,sugar,cajun_creole
+22930,buttermilk,cajun_creole
+22930,bread flour,cajun_creole
+22930,active dry yeast,cajun_creole
+22930,salt,cajun_creole
+19435,milk,korean
+19435,salt,korean
+19435,warm water,korean
+19435,dry yeast,korean
+19435,white sugar,korean
+19435,white flour,korean
+19435,cinnamon,korean
+19435,peanuts,korean
+19435,dark brown sugar,korean
+46568,warm water,italian
+46568,flour,italian
+46568,flat leaf parsley,italian
+46568,olive oil,italian
+46568,sea salt,italian
+46568,active dry yeast,italian
+46568,all purpose unbleached flour,italian
+46568,sugar,italian
+46568,unsalted butter,italian
+46568,garlic,italian
+40817,tomatoes,jamaican
+40817,sugar,jamaican
+40817,lime juice,jamaican
+40817,cooking oil,jamaican
+40817,paprika,jamaican
+40817,salt,jamaican
+40817,scallions,jamaican
+40817,browning,jamaican
+40817,tomato sauce,jamaican
+40817,water,jamaican
+40817,fresh thyme,jamaican
+40817,flour,jamaican
+40817,garlic,jamaican
+40817,cayenne pepper,jamaican
+40817,hot water,jamaican
+40817,allspice,jamaican
+40817,coconut oil,jamaican
+40817,kosher salt,jamaican
+40817,hot pepper sauce,jamaican
+40817,bell pepper,jamaican
+40817,rosemary leaves,jamaican
+40817,tomato ketchup,jamaican
+40817,thyme,jamaican
+40817,chicken,jamaican
+40817,brown sugar,jamaican
+40817,black pepper,jamaican
+40817,habanero hot sauce,jamaican
+40817,potatoes,jamaican
+40817,ginger,jamaican
+40817,yellow onion,jamaican
+40817,carrots,jamaican
+40817,oregano,jamaican
+7601,salt,indian
+7601,onions,indian
+7601,potatoes,indian
+7601,green chilies,indian
+7601,cilantro leaves,indian
+7601,teas,indian
+7601,oil,indian
+27122,milk,mexican
+27122,butter,mexican
+27122,huitlacoche,mexican
+27122,vegetable oil,mexican
+27122,poblano chiles,mexican
+27122,flour,mexican
+27122,salt,mexican
+27122,chile sauce,mexican
+27122,queso fresco,mexican
+27122,corn tortillas,mexican
+890,garlic,mexican
+890,long grain white rice,mexican
+890,tomato sauce,mexican
+890,lard,mexican
+890,chicken broth,mexican
+890,salt,mexican
+890,plum tomatoes,mexican
+890,chili powder,mexican
+890,onions,mexican
+9231,jalapeno chilies,spanish
+9231,orange juice,spanish
+9231,onions,spanish
+9231,watermelon,spanish
+9231,extra-virgin olive oil,spanish
+9231,fresh lime juice,spanish
+9231,seedless cucumber,spanish
+9231,yellow bell pepper,spanish
+9231,garlic cloves,spanish
+9231,ground black pepper,spanish
+9231,salt,spanish
+9231,fresh parsley,spanish
+11999,baguette,italian
+11999,salt,italian
+11999,tomatoes,italian
+11999,parmesan cheese,italian
+11999,fresh basil,italian
+11999,garlic,italian
+11999,olive oil,italian
+11999,"cream cheese, soften",italian
+2983,pepper,italian
+2983,minced onion,italian
+2983,tomatoes with juice,italian
+2983,boneless skinless chicken breast halves,italian
+2983,eggs,italian
+2983,milk,italian
+2983,butter,italian
+2983,dry bread crumbs,italian
+2983,minced garlic,italian
+2983,grated parmesan cheese,italian
+2983,salt,italian
+2983,dried oregano,italian
+2983,sugar,italian
+2983,olive oil,italian
+2983,heavy cream,italian
+2983,shredded mozzarella cheese,italian
+27577,large eggs,british
+27577,salt,british
+27577,grated lemon peel,british
+27577,water,british
+27577,vanilla extract,british
+27577,fresh lemon juice,british
+27577,sugar,british
+27577,fresh blueberries,british
+27577,cream cheese,british
+27577,unsalted butter,british
+27577,pound cake,british
+27577,heavy whipping cream,british
+10464,green bell pepper,cajun_creole
+10464,low sodium chicken broth,cajun_creole
+10464,salt,cajun_creole
+10464,scallions,cajun_creole
+10464,chicken,cajun_creole
+10464,water,cajun_creole
+10464,cajun seasoning,cajun_creole
+10464,yellow onion,cajun_creole
+10464,celery,cajun_creole
+10464,andouille sausage,cajun_creole
+10464,vegetable oil,cajun_creole
+10464,all-purpose flour,cajun_creole
+10464,garlic cloves,cajun_creole
+10464,parsley leaves,cajun_creole
+10464,diced tomatoes,cajun_creole
+10464,okra,cajun_creole
+10464,bay leaf,cajun_creole
+39190,ground black pepper,french
+39190,purple onion,french
+39190,olive oil,french
+39190,red wine vinegar,french
+39190,plum tomatoes,french
+39190,pitted kalamata olives,french
+39190,large eggs,french
+39190,salt,french
+39190,baguette,french
+39190,lettuce leaves,french
+39190,albacore tuna in water,french
+49084,black beans,mexican
+49084,1% low-fat milk,mexican
+49084,corn tortillas,mexican
+49084,hot salsa,mexican
+49084,low-fat plain yogurt,mexican
+49084,cooked chicken,mexican
+49084,salt,mexican
+49084,dried oregano,mexican
+49084,pepper,mexican
+49084,shredded sharp cheddar cheese,mexican
+49084,chopped cilantro fresh,mexican
+49084,ground cumin,mexican
+49084,pitted black olives,mexican
+49084,stewed tomatoes,mexican
+49084,frozen corn kernels,mexican
+49084,sliced green onions,mexican
+49328,white pepper,chinese
+49328,rice wine,chinese
+49328,peanut oil,chinese
+49328,sea bass,chinese
+49328,white rice vinegar,chinese
+49328,ginger,chinese
+49328,sugar,chinese
+49328,pork loin,chinese
+49328,salt,chinese
+49328,light soy sauce,chinese
+49328,sesame oil,chinese
+49328,scallions,chinese
+30913,chicken broth,southern_us
+30913,water,southern_us
+30913,green onions,southern_us
+30913,garlic,southern_us
+30913,lemon juice,southern_us
+30913,fresh parsley,southern_us
+30913,white button mushrooms,southern_us
+30913,shredded cheddar cheese,southern_us
+30913,grated parmesan cheese,southern_us
+30913,bacon,southern_us
+30913,peanut oil,southern_us
+30913,celery,southern_us
+30913,shrimp stock,southern_us
+30913,pepper,southern_us
+30913,unsalted butter,southern_us
+30913,parsley,southern_us
+30913,cayenne pepper,southern_us
+30913,shrimp,southern_us
+30913,black pepper,southern_us
+30913,vegetables,southern_us
+30913,Tabasco Pepper Sauce,southern_us
+30913,salt,southern_us
+30913,carrots,southern_us
+30913,grits,southern_us
+26513,seaweed,japanese
+26513,salt,japanese
+26513,rice,japanese
+26513,sugar,japanese
+27810,granny smith apples,french
+27810,salt,french
+27810,unsalted butter,french
+27810,sugar,french
+27810,ice water,french
+27810,large egg whites,french
+27810,all-purpose flour,french
+24826,unsalted butter,southern_us
+24826,cake flour,southern_us
+24826,sugar,southern_us
+24826,all purpose unbleached flour,southern_us
+24826,baking powder,southern_us
+24826,salt,southern_us
+24826,baking soda,southern_us
+24826,buttermilk,southern_us
+36519,sugar,indian
+36519,pistachios,indian
+36519,cashew nuts,indian
+36519,milk,indian
+36519,gram flour,indian
+36519,orange,indian
+36519,green cardamom,indian
+36519,almonds,indian
+36519,ghee,indian
+26351,brown sugar,chinese
+26351,chicken breasts,chinese
+26351,garlic cloves,chinese
+26351,low sodium soy sauce,chinese
+26351,cooking spray,chinese
+26351,salt,chinese
+26351,fresh lime juice,chinese
+26351,curry powder,chinese
+26351,vegetable oil,chinese
+26351,red bell pepper,chinese
+26351,cooked rice,chinese
+26351,peeled fresh ginger,chinese
+26351,pineapple juice,chinese
+26351,fresh pineapple,chinese
+29878,grated parmesan cheese,southern_us
+29878,salt,southern_us
+29878,butter,southern_us
+29878,yellow hominy,southern_us
+29878,grits,southern_us
+29878,water,southern_us
+29878,shredded sharp cheddar cheese,southern_us
+10363,pure vanilla extract,french
+10363,water,french
+10363,large eggs,french
+10363,all-purpose flour,french
+10363,brown sugar,french
+10363,unsalted butter,french
+10363,almond extract,french
+10363,confectioners sugar,french
+10363,sugar,french
+10363,granulated sugar,french
+10363,salt,french
+10363,cream sweeten whip,french
+10363,large egg yolks,french
+10363,half & half,french
+10363,cranberries,french
+41290,olive oil,italian
+41290,crushed red pepper,italian
+41290,capers,italian
+41290,ground black pepper,italian
+41290,flat leaf parsley,italian
+41290,salt and ground black pepper,italian
+41290,salt,italian
+41290,pitted black olives,italian
+41290,garlic,italian
+41290,boneless skinless chicken breast halves,italian
+42925,pure vanilla extract,russian
+42925,large egg whites,russian
+42925,salt,russian
+42925,powdered sugar,russian
+42925,baking soda,russian
+42925,lemon juice,russian
+42925,peppermint extract,russian
+42925,large egg yolks,russian
+42925,all-purpose flour,russian
+42925,white vinegar,russian
+42925,sugar,russian
+42925,cookies,russian
+42925,sour cream,russian
+15661,salt,french
+15661,fresh lemon juice,french
+15661,lemon wedge,french
+15661,fresh herbs,french
+15661,grated lemon zest,french
+15661,bass fillets,french
+15661,olive oil,french
+15661,freshly ground pepper,french
+15661,herbes de provence,french
+26252,heavy cream,french
+26252,all-purpose flour,french
+26252,unsalted butter,french
+26252,vanilla extract,french
+26252,bittersweet chocolate,french
+26252,egg whites,french
+26252,salt,french
+26252,light corn syrup,french
+26252,confectioners sugar,french
+22904,dark rum,southern_us
+22904,fresh pineapple,southern_us
+22904,brandy,southern_us
+22904,carbonated water,southern_us
+22904,sugar,southern_us
+22904,lemon,southern_us
+22904,liqueur,southern_us
+22904,green tea,southern_us
+22904,champagne,southern_us
+4842,sugar,thai
+4842,Thai red curry paste,thai
+4842,fresh basil,thai
+4842,cherry tomatoes,thai
+4842,fresh lime juice,thai
+4842,rice stick noodles,thai
+4842,water,thai
+4842,salt,thai
+4842,fish sauce,thai
+4842,flank steak,thai
+4842,fresh asparagus,thai
+9843,lime juice,thai
+9843,Sriracha,thai
+9843,worcestershire sauce,thai
+9843,shrimp,thai
+9843,sugar,thai
+9843,lime,thai
+9843,rice noodles,thai
+9843,rice vinegar,thai
+9843,fish sauce,thai
+9843,fresh cilantro,thai
+9843,large eggs,thai
+9843,garlic,thai
+9843,beansprouts,thai
+9843,ketchup,thai
+9843,peanuts,thai
+9843,vegetable oil,thai
+9843,scallions,thai
+25561,pork,british
+25561,finely chopped onion,british
+25561,all-purpose flour,british
+25561,shortening,british
+25561,water,british
+25561,apples,british
+25561,cold water,british
+25561,shredded cheddar cheese,british
+25561,dried sage,british
+25561,sugar,british
+25561,milk,british
+25561,salt,british
+10381,red chili powder,indian
+10381,yoghurt,indian
+10381,garlic,indian
+10381,cumin,indian
+10381,black pepper,indian
+10381,paprika,indian
+10381,chicken fingers,indian
+10381,tumeric,indian
+10381,onion powder,indian
+10381,salt,indian
+10381,garam masala,indian
+10381,ginger,indian
+10381,lemon juice,indian
+32311,sugar,french
+32311,frozen pastry puff sheets,french
+32311,unsalted butter,french
+32311,gala apples,french
+25453,plain flour,japanese
+25453,amchur,japanese
+25453,coriander powder,japanese
+25453,salt,japanese
+25453,coriander,japanese
+25453,sugar,japanese
+25453,baking soda,japanese
+25453,yoghurt,japanese
+25453,oil,japanese
+25453,red chili powder,japanese
+25453,whole wheat flour,japanese
+25453,potatoes,japanese
+25453,green chilies,japanese
+25453,dough,japanese
+25453,mozzarella cheese,japanese
+25453,garam masala,japanese
+25453,paneer,japanese
+25453,onions,japanese
+14525,fresh basil,italian
+14525,pinenuts,italian
+14525,feta cheese,italian
+14525,salt,italian
+14525,vidalia onion,italian
+14525,water,italian
+14525,cooking spray,italian
+14525,red bell pepper,italian
+14525,capers,italian
+14525,minced garlic,italian
+14525,fresh parmesan cheese,italian
+14525,pizza doughs,italian
+14525,black pepper,italian
+14525,olive oil,italian
+14525,yellow bell pepper,italian
+14525,cornmeal,italian
+26845,green bell pepper,spanish
+26845,zucchini,spanish
+26845,salt,spanish
+26845,cumin,spanish
+26845,water,spanish
+26845,paprika,spanish
+26845,red bell pepper,spanish
+26845,pepper,spanish
+26845,potatoes,spanish
+26845,garlic cloves,spanish
+26845,tomatoes,spanish
+26845,eggplant,spanish
+26845,extra-virgin olive oil,spanish
+26845,onions,spanish
+47244,baking soda,irish
+47244,all-purpose flour,irish
+47244,milk,irish
+47244,buttermilk,irish
+47244,whole wheat flour,irish
+47244,salt,irish
+47244,vegetable oil,irish
+47244,white sugar,irish
+40755,sugar,cajun_creole
+40755,flour,cajun_creole
+40755,butter,cajun_creole
+40755,white sugar,cajun_creole
+40755,pecan halves,cajun_creole
+40755,evaporated milk,cajun_creole
+40755,baking powder,cajun_creole
+40755,vanilla,cajun_creole
+40755,cream of tartar,cajun_creole
+40755,honey,cajun_creole
+40755,egg yolks,cajun_creole
+40755,sprinkles,cajun_creole
+40755,brown sugar,cajun_creole
+40755,lemon extract,cajun_creole
+40755,cinnamon,cajun_creole
+40755,salt,cajun_creole
+5808,sugar,italian
+5808,garlic,italian
+5808,fresh mint,italian
+5808,ground black pepper,italian
+5808,bow-tie pasta,italian
+5808,ricotta salata,italian
+5808,salt,italian
+5808,tomatoes,italian
+5808,extra-virgin olive oil,italian
+5808,grated lemon zest,italian
+17085,self raising flour,filipino
+17085,pandan extract,filipino
+17085,eggs,filipino
+17085,vegetable oil,filipino
+17085,cream of tartar,filipino
+17085,egg whites,filipino
+17085,sugar,filipino
+17085,coconut milk,filipino
+30782,sugar,italian
+30782,egg yolks,italian
+30782,all-purpose flour,italian
+30782,coconut extract,italian
+30782,low-fat buttermilk,italian
+30782,extract,italian
+30782,chopped pecans,italian
+30782,vegetable oil cooking spray,italian
+30782,egg whites,italian
+30782,vanilla extract,italian
+30782,orange rind,italian
+30782,light butter,italian
+30782,baking soda,italian
+30782,kumquats,italian
+30782,icing,italian
+31872,tomatoes,french
+31872,leeks,french
+31872,vegetable oil,french
+31872,salt,french
+31872,beef round,french
+31872,ground black pepper,french
+31872,shallots,french
+31872,extra-virgin olive oil,french
+31872,tarragon,french
+31872,burgers,french
+31872,confit,french
+31872,dry red wine,french
+31872,brie cheese,french
+31872,french bread,french
+31872,parsley,french
+31872,garlic,french
+31872,herbes de provence,french
+8843,soy sauce,japanese
+8843,mirin,japanese
+8843,salt,japanese
+8843,carrots,japanese
+8843,minced ginger,japanese
+8843,Tabasco Pepper Sauce,japanese
+8843,scallions,japanese
+8843,ketchup,japanese
+8843,sesame oil,japanese
+8843,peanut oil,japanese
+8843,savoy cabbage,japanese
+8843,pork chops,japanese
+8843,worcestershire sauce,japanese
+8843,Chinese egg noodles,japanese
+9727,chicken legs,chinese
+9727,water,chinese
+9727,ginger,chinese
+9727,oyster sauce,chinese
+9727,soy sauce,chinese
+9727,Shaoxing wine,chinese
+9727,scallions,chinese
+9727,sugar,chinese
+9727,black fungus,chinese
+9727,salt,chinese
+9727,corn starch,chinese
+9727,white pepper,chinese
+9727,sesame oil,chinese
+9727,oil,chinese
+48997,pepper,italian
+48997,salt,italian
+48997,parmesan cheese,italian
+48997,angel hair,italian
+48997,butter,italian
+48997,water,italian
+48997,garlic cloves,italian
+30728,parmigiano reggiano cheese,italian
+30728,pesto,italian
+30728,salt,italian
+30728,linguine,italian
+30728,pepper,italian
+42240,white vinegar,indian
+42240,fat free less sodium chicken broth,indian
+42240,baking potatoes,indian
+42240,chopped onion,indian
+42240,ground cardamom,indian
+42240,black peppercorns,indian
+42240,cooking spray,indian
+42240,salt,indian
+42240,cumin seed,indian
+42240,chopped cilantro fresh,indian
+42240,sugar,indian
+42240,ground red pepper,indian
+42240,boneless pork loin,indian
+42240,garlic cloves,indian
+42240,ground cinnamon,indian
+42240,fresh ginger,indian
+42240,diced tomatoes,indian
+42240,ground coriander,indian
+42240,mustard seeds,indian
+26290,sugar,chinese
+26290,black bean garlic sauce,chinese
+26290,soft tofu,chinese
+26290,sesame oil,chinese
+26290,molasses,chinese
+26290,halibut fillets,chinese
+26290,peeled fresh ginger,chinese
+26290,dark soy sauce,chinese
+26290,minced garlic,chinese
+26290,regular soy sauce,chinese
+26290,green onions,chinese
+26290,soy sauce,chinese
+26290,water,chinese
+26290,Shaoxing wine,chinese
+36181,chiles,vietnamese
+36181,peanuts,vietnamese
+36181,rice noodles,vietnamese
+36181,oil,vietnamese
+36181,iceberg lettuce,vietnamese
+36181,ground ginger,vietnamese
+36181,curry powder,vietnamese
+36181,green onions,vietnamese
+36181,cilantro leaves,vietnamese
+36181,asian fish sauce,vietnamese
+36181,catfish fillets,vietnamese
+36181,sugar,vietnamese
+36181,cayenne,vietnamese
+36181,garlic,vietnamese
+36181,beansprouts,vietnamese
+36181,fresh dill,vietnamese
+36181,lime juice,vietnamese
+36181,shallots,vietnamese
+36181,rice vinegar,vietnamese
+36181,ground turmeric,vietnamese
+36284,sugar,vietnamese
+36284,cracked black pepper,vietnamese
+36284,chopped fresh mint,vietnamese
+36284,green onions,vietnamese
+36284,rice vinegar,vietnamese
+36284,fresh ginger,vietnamese
+36284,salt,vietnamese
+36284,chopped cilantro fresh,vietnamese
+36284,flank steak,vietnamese
+36284,ground coriander,vietnamese
+21323,sugar,cajun_creole
+21323,bell pepper,cajun_creole
+21323,vegetable stock,cajun_creole
+21323,shrimp,cajun_creole
+21323,pepper,cajun_creole
+21323,flour,cajun_creole
+21323,diced tomatoes,cajun_creole
+21323,onions,cajun_creole
+21323,crushed tomatoes,cajun_creole
+21323,bay leaves,cajun_creole
+21323,salt,cajun_creole
+21323,celery ribs,cajun_creole
+21323,olive oil,cajun_creole
+21323,salt free seasoning,cajun_creole
+21323,garlic cloves,cajun_creole
+30768,sugar,british
+30768,butter,british
+30768,milk,british
+30768,cornmeal,british
+30768,warm water,british
+30768,salt,british
+30768,active dry yeast,british
+30768,bread flour,british
+11837,hot red pepper flakes,vietnamese
+11837,large eggs,vietnamese
+11837,scallions,vietnamese
+11837,asian fish sauce,vietnamese
+11837,minced garlic,vietnamese
+11837,white rice,vietnamese
+11837,beansprouts,vietnamese
+11837,sugar,vietnamese
+11837,corn oil,vietnamese
+11837,carrots,vietnamese
+11837,dry roasted peanuts,vietnamese
+11837,rice vinegar,vietnamese
+11837,chopped cilantro fresh,vietnamese
+23062,new potatoes,italian
+23062,italian seasoning,italian
+23062,paprika,italian
+23062,vegetable oil,italian
+23062,olive oil,italian
+23062,salt,italian
+44420,sugar,french
+44420,part-skim ricotta cheese,french
+44420,unflavored gelatin,french
+44420,reduced-fat sour cream,french
+44420,"cream cheese, soften",french
+44420,sweetener,french
+44420,goat cheese,french
+44420,cold water,french
+44420,gingersnap,french
+44420,berries,french
+24350,eggs,italian
+24350,cherry tomatoes,italian
+24350,ricotta cheese,italian
+24350,salt,italian
+24350,gnocchi,italian
+24350,sugar,italian
+24350,freshly grated parmesan,italian
+24350,diced tomatoes,italian
+24350,grated pecorino,italian
+24350,fresh basil,italian
+24350,olive oil,italian
+24350,heavy cream,italian
+24350,sauce,italian
+24350,tomato paste,italian
+24350,pepper,italian
+24350,flour,italian
+24350,garlic,italian
+24350,shredded mozzarella cheese,italian
+470,olive oil,mexican
+470,garlic,mexican
+470,dried oregano,mexican
+470,lime,mexican
+470,boneless skinless chicken breasts,mexican
+470,ground coriander,mexican
+470,lime zest,mexican
+470,ground black pepper,mexican
+470,salt,mexican
+470,honey,mexican
+470,ancho powder,mexican
+470,tequila,mexican
+15646,water,thai
+15646,sesame oil,thai
+15646,garlic,thai
+15646,chili sauce,thai
+15646,red bell pepper,thai
+15646,sugar,thai
+15646,green onions,thai
+15646,napa cabbage,thai
+15646,rice vinegar,thai
+15646,carrots,thai
+15646,natural peanut butter,thai
+15646,lime,thai
+15646,vegetable oil,thai
+15646,salt,thai
+15646,hearts of romaine,thai
+15646,soy sauce,thai
+15646,boneless skinless chicken breasts,thai
+15646,cilantro,thai
+15646,salted peanuts,thai
+15646,cucumber,thai
+35844,fresh basil,southern_us
+35844,balsamic vinegar,southern_us
+35844,pepper,southern_us
+35844,salt,southern_us
+35844,sugar,southern_us
+35844,extra-virgin olive oil,southern_us
+35844,tomatoes,southern_us
+35844,sweet onion,southern_us
+44027,cold water,mexican
+44027,baking soda,mexican
+44027,salt,mexican
+44027,confectioners sugar,mexican
+44027,cocoa,mexican
+44027,cinnamon,mexican
+44027,strawberries,mexican
+44027,unsweetened cocoa powder,mexican
+44027,sugar,mexican
+44027,balsamic vinegar,mexican
+44027,all-purpose flour,mexican
+44027,canola oil,mexican
+44027,water,mexican
+44027,vanilla extract,mexican
+44027,cayenne pepper,mexican
+21557,chicken broth,mexican
+21557,jalapeno chilies,mexican
+21557,tomatillos,mexican
+21557,sour cream,mexican
+21557,baby spinach leaves,mexican
+21557,green onions,mexican
+21557,salt,mexican
+21557,onions,mexican
+21557,pepper sauce,mexican
+21557,cilantro stems,mexican
+21557,heavy cream,mexican
+21557,corn tortillas,mexican
+21557,ground black pepper,mexican
+21557,vegetable oil,mexican
+21557,shrimp,mexican
+21557,shredded Monterey Jack cheese,mexican
+16319,lime juice,vietnamese
+16319,boneless skinless chicken breasts,vietnamese
+16319,cucumber,vietnamese
+16319,sugar,vietnamese
+16319,cooking oil,vietnamese
+16319,garlic,vietnamese
+16319,fresh mint,vietnamese
+16319,peanuts,vietnamese
+16319,red pepper flakes,vietnamese
+16319,beansprouts,vietnamese
+16319,water,vietnamese
+16319,vermicelli,vietnamese
+16319,wine vinegar,vietnamese
+16319,asian fish sauce,vietnamese
+34018,sushi rice,japanese
+34018,red pepper,japanese
+34018,carrots,japanese
+34018,wasabi paste,japanese
+34018,mirin,japanese
+34018,sushi nori,japanese
+34018,avocado,japanese
+34018,gari,japanese
+34018,salt,japanese
+34018,cucumber,japanese
+34018,soy sauce,japanese
+34018,spring onions,japanese
+34018,Japanese rice vinegar,japanese
+48360,sugar,chinese
+48360,sesame oil,chinese
+48360,oil,chinese
+48360,plain flour,chinese
+48360,light soy sauce,chinese
+48360,ginger,chinese
+48360,minced pork,chinese
+48360,warm water,chinese
+48360,chili oil,chinese
+48360,chinese chives,chinese
+48360,eggs,chinese
+48360,Shaoxing wine,chinese
+48360,chinese cabbage,chinese
+48360,black rice vinegar,chinese
+10028,olive oil,mexican
+10028,salt,mexican
+10028,chopped cilantro fresh,mexican
+10028,deveined shrimp,mexican
+10028,fresh lime juice,mexican
+10028,chili powder,mexican
+10028,corn tortillas,mexican
+10028,mango,mexican
+10028,purple onion,mexican
+10028,chipotle chile powder,mexican
+8684,sesame oil,indian
+8684,dried red chile peppers,indian
+8684,sesame seeds,indian
+8684,salt,indian
+46714,long-grain rice,japanese
+46714,salt,japanese
+46714,rice vinegar,japanese
+46714,sugar,japanese
+29846,asti spumante,italian
+29846,water,italian
+29846,cardamom pods,italian
+29846,vanilla ice cream,italian
+29846,bosc pears,italian
+29846,ground cardamom,italian
+29846,sugar,italian
+29846,mint sprigs,italian
+29846,black peppercorns,italian
+29846,vanilla beans,italian
+29846,orange juice,italian
+13480,chopped tomatoes,moroccan
+13480,cilantro,moroccan
+13480,cinnamon sticks,moroccan
+13480,olive oil,moroccan
+13480,vegetable stock,moroccan
+13480,chickpeas,moroccan
+13480,onions,moroccan
+13480,pepper,moroccan
+13480,sweet potatoes,moroccan
+13480,salt,moroccan
+13480,red bell pepper,moroccan
+13480,eggplant,moroccan
+13480,raisins,moroccan
+13480,garlic cloves,moroccan
+37628,bread crumbs,british
+37628,golden syrup,british
+37628,black treacle,british
+37628,salt,british
+37628,plain flour,british
+37628,unsalted butter,british
+37628,juice,british
+37628,sugar,british
+37628,free range egg,british
+10568,black pepper,french
+10568,salt,french
+10568,fresh parsley,french
+10568,pitted kalamata olives,french
+10568,roasted red peppers,french
+10568,garlic cloves,french
+10568,parsley sprigs,french
+10568,extra-virgin olive oil,french
+10568,small red potato,french
+10568,sherry vinegar,french
+10568,anchovy fillets,french
+26989,black pepper,korean
+26989,shiitake,korean
+26989,red pepper flakes,korean
+26989,shrimp,korean
+26989,sugar,korean
+26989,minced garlic,korean
+26989,vinegar,korean
+26989,salt,korean
+26989,onions,korean
+26989,green cabbage,korean
+26989,pepper,korean
+26989,mushroom caps,korean
+26989,ginger,korean
+26989,hot water,korean
+26989,soy sauce,korean
+26989,water,korean
+26989,sesame oil,korean
+26989,all-purpose flour,korean
+10290,water,southern_us
+10290,finely chopped onion,southern_us
+10290,ground red pepper,southern_us
+10290,vegetable broth,southern_us
+10290,cornmeal,southern_us
+10290,sugar,southern_us
+10290,fat free milk,southern_us
+10290,sweet potatoes,southern_us
+10290,butter,southern_us
+10290,all-purpose flour,southern_us
+10290,ground cloves,southern_us
+10290,frozen whole kernel corn,southern_us
+10290,bay leaves,southern_us
+10290,diced tomatoes,southern_us
+10290,garlic cloves,southern_us
+10290,navy beans,southern_us
+10290,olive oil,southern_us
+10290,zucchini,southern_us
+10290,baking powder,southern_us
+10290,salt,southern_us
+10290,fresh parsley,southern_us
+33933,ground cinnamon,moroccan
+33933,dried currants,moroccan
+33933,harissa paste,moroccan
+33933,extra-virgin olive oil,moroccan
+33933,ground allspice,moroccan
+33933,chopped cilantro,moroccan
+33933,tomato paste,moroccan
+33933,lamb shanks,moroccan
+33933,whole peeled tomatoes,moroccan
+33933,dry red wine,moroccan
+33933,grated nutmeg,moroccan
+33933,carrots,moroccan
+33933,mint,moroccan
+33933,water,moroccan
+33933,shallots,moroccan
+33933,salt,moroccan
+33933,ground coriander,moroccan
+33933,onions,moroccan
+33933,chicken stock,moroccan
+33933,slivered almonds,moroccan
+33933,unsalted butter,moroccan
+33933,large garlic cloves,moroccan
+33933,instant couscous,moroccan
+33933,freshly ground pepper,moroccan
+33933,ground cumin,moroccan
+23041,baking soda,russian
+23041,sugar,russian
+23041,vanilla extract,russian
+23041,eggs,russian
+23041,flour,russian
+23041,granny smith apples,russian
+1911,sugar,indian
+1911,salt,indian
+1911,cumin seed,indian
+1911,cracked black pepper,indian
+1911,chickpeas,indian
+1911,rice flour,indian
+1911,coriander powder,indian
+1911,cilantro leaves,indian
+1911,oil,indian
+1911,asafoetida,indian
+1911,ginger,indian
+1911,green chilies,indian
+1911,onions,indian
+8115,water,vietnamese
+8115,scallions,vietnamese
+8115,fish sauce,vietnamese
+8115,salt,vietnamese
+8115,dried shrimp,vietnamese
+8115,napa cabbage,vietnamese
+8115,medium shrimp,vietnamese
+8115,white pepper,vietnamese
+8115,yellow onion,vietnamese
+8115,canola oil,vietnamese
+27243,sugar,chinese
+27243,rice wine,chinese
+27243,tomatoes,chinese
+27243,white pepper,chinese
+27243,scallions,chinese
+27243,ketchup,chinese
+27243,salt,chinese
+27243,eggs,chinese
+27243,cooking oil,chinese
+27243,corn starch,chinese
+12414,chicken broth,southern_us
+12414,white rice,southern_us
+12414,whole peeled tomatoes,southern_us
+12414,okra,southern_us
+12414,bay leaves,southern_us
+12414,chicken,southern_us
+12414,black pepper,southern_us
+12414,salt,southern_us
+44327,sugar,southern_us
+44327,flour,southern_us
+44327,vanilla extract,southern_us
+44327,granulated sugar,southern_us
+44327,whole milk,southern_us
+44327,vanilla wafers,southern_us
+44327,bananas,southern_us
+44327,egg yolks,southern_us
+44327,salt,southern_us
+44327,cream of tartar,southern_us
+44327,egg whites,southern_us
+44327,butter,southern_us
+11425,sherry vinegar,italian
+11425,shallots,italian
+11425,salt,italian
+11425,zucchini,italian
+11425,extra-virgin olive oil,italian
+11425,penne rigate,italian
+11425,mascarpone,italian
+11425,parsley,italian
+11425,green beans,italian
+11425,chicken breasts,italian
+11425,crushed red pepper,italian
+9260,avocado,mexican
+9260,diced red onions,mexican
+9260,lime juice,mexican
+9260,salt,mexican
+9260,sugar,mexican
+9260,jalapeno chilies,mexican
+9260,corn kernels,mexican
+9260,cilantro leaves,mexican
+12575,unsalted butter,cajun_creole
+12575,garlic,cajun_creole
+12575,scallions,cajun_creole
+12575,flat leaf parsley,cajun_creole
+12575,jalapeno chilies,cajun_creole
+12575,salt,cajun_creole
+12575,chicken livers,cajun_creole
+12575,chopped green bell pepper,cajun_creole
+12575,purple onion,cajun_creole
+12575,long-grain rice,cajun_creole
+12575,celery,cajun_creole
+12575,ground black pepper,cajun_creole
+12575,vegetable oil,cajun_creole
+12575,fresh oregano,cajun_creole
+12575,red bell pepper,cajun_creole
+44826,honey,chinese
+44826,green onions,chinese
+44826,ketchup,chinese
+44826,ground black pepper,chinese
+44826,sugar,chinese
+44826,sesame seeds,chinese
+44826,salt,chinese
+44826,white distilled vinegar,chinese
+44826,frozen popcorn chicken,chinese
+24185,sugar,italian
+24185,all purpose unbleached flour,italian
+24185,large egg yolks,italian
+24185,grated lemon peel,italian
+24185,yellow corn meal,italian
+24185,unsalted butter,italian
+24185,water,italian
+24185,salt,italian
+20489,pecans,southern_us
+20489,granulated sugar,southern_us
+20489,heavy cream,southern_us
+20489,confectioners sugar,southern_us
+20489,light brown sugar,southern_us
+20489,peaches,southern_us
+20489,cinnamon,southern_us
+20489,all-purpose flour,southern_us
+20489,turbinado,southern_us
+20489,unsalted butter,southern_us
+20489,buttermilk,southern_us
+20489,corn starch,southern_us
+20489,pure vanilla extract,southern_us
+20489,baking soda,southern_us
+20489,baking powder,southern_us
+20489,salt,southern_us
+49553,marsala wine,italian
+49553,berries,italian
+49553,figs,italian
+49553,mint sprigs,italian
+49553,sugar,italian
+49553,whipped topping,italian
+49553,large egg yolks,italian
+39541,fresh ginger,vietnamese
+39541,fish sauce,vietnamese
+39541,sugar,vietnamese
+39541,fresh lime juice,vietnamese
+9882,ground pepper,filipino
+9882,garlic,filipino
+9882,frozen peas,filipino
+9882,water,filipino
+9882,chicken breasts,filipino
+9882,all-purpose flour,filipino
+9882,sugar,filipino
+9882,potatoes,filipino
+9882,salt,filipino
+9882,evaporated milk,filipino
+9882,butter,filipino
+9882,onions,filipino
+31869,salt,irish
+31869,cheddar cheese,irish
+31869,corned beef,irish
+31869,red potato,irish
+31869,sour cream,irish
+31869,butter,irish
+36781,celery ribs,cajun_creole
+36781,green bell pepper,cajun_creole
+36781,bacon slices,cajun_creole
+36781,garlic cloves,cajun_creole
+36781,chicken broth,cajun_creole
+36781,water,cajun_creole
+36781,salt,cajun_creole
+36781,cooked rice,cajun_creole
+36781,ground red pepper,cajun_creole
+36781,salt pork,cajun_creole
+36781,red kidney beans,cajun_creole
+36781,black pepper,cajun_creole
+36781,smoked sausage,cajun_creole
+36781,onions,cajun_creole
+28787,unflavored gelatin,southern_us
+28787,granulated sugar,southern_us
+28787,heavy cream,southern_us
+28787,pure vanilla extract,southern_us
+28787,sugar,southern_us
+28787,baking powder,southern_us
+28787,cream cheese,southern_us
+28787,pecans,southern_us
+28787,dark rum,southern_us
+28787,praline syrup,southern_us
+28787,eggs,southern_us
+28787,water,southern_us
+28787,bourbon whiskey,southern_us
+28787,confectioners sugar,southern_us
+45617,ground cinnamon,mexican
+45617,chili powder,mexican
+45617,garlic cloves,mexican
+45617,olive oil,mexican
+45617,salt,mexican
+45617,corn tortillas,mexican
+45617,water,mexican
+45617,non-fat sour cream,mexican
+45617,shrimp,mexican
+45617,avocado,mexican
+45617,ground red pepper,mexican
+45617,orange juice,mexican
+45617,ground cumin,mexican
+40435,low-fat plain yogurt,indian
+40435,pineapple,indian
+40435,dried mint flakes,indian
+40435,sugar,indian
+40435,salt,indian
+40435,pink peppercorns,indian
+6533,dry white wine,french
+6533,all-purpose flour,french
+6533,sugar,french
+6533,butter,french
+6533,shallots,french
+6533,sourdough baguette,french
+6533,ground nutmeg,french
+6533,cheese,french
+28886,dried basil,italian
+28886,salt,italian
+28886,Italian seasoned diced tomatoes,italian
+28886,tomato sauce,italian
+28886,boneless chuck roast,italian
+28886,onions,italian
+28886,tomato paste,italian
+28886,olive oil,italian
+28886,garlic cloves,italian
+28886,dried oregano,italian
+28886,sugar,italian
+28886,crushed red pepper,italian
+28886,spaghetti,italian
+46646,garlic chives,thai
+46646,peanuts,thai
+46646,lime wedges,thai
+46646,dried rice noodles,thai
+46646,white vinegar,thai
+46646,sugar,thai
+46646,tamarind juice,thai
+46646,paprika,thai
+46646,beansprouts,thai
+46646,fish sauce,thai
+46646,radishes,thai
+46646,vegetable oil,thai
+46646,cayenne pepper,thai
+46646,eggs,thai
+46646,soy sauce,thai
+46646,cake,thai
+46646,garlic,thai
+46646,large shrimp,thai
+478,melted butter,southern_us
+478,warm water,southern_us
+478,M&M's Candy,southern_us
+478,cream cheese,southern_us
+478,brown sugar,southern_us
+478,active dry yeast,southern_us
+478,salt,southern_us
+478,sugar,southern_us
+478,red velvet cake mix,southern_us
+478,all-purpose flour,southern_us
+478,powdered sugar,southern_us
+478,milk,southern_us
+478,vanilla extract,southern_us
+33397,sugar,mexican
+33397,jicama,mexican
+33397,fresh lime juice,mexican
+33397,avocado,mexican
+33397,pomegranate seeds,mexican
+33397,salt,mexican
+33397,ground cumin,mexican
+33397,pomegranate juice,mexican
+33397,pinenuts,mexican
+33397,purple onion,mexican
+33397,chopped cilantro fresh,mexican
+33397,rocket leaves,mexican
+33397,olive oil,mexican
+33397,garlic cloves,mexican
+9253,dark corn syrup,southern_us
+9253,all-purpose flour,southern_us
+9253,sugar,southern_us
+9253,salt,southern_us
+9253,pecan halves,southern_us
+9253,vanilla extract,southern_us
+9253,eggs,southern_us
+9253,pastry shell,southern_us
+42356,eggs,cajun_creole
+42356,water,cajun_creole
+42356,decorating sugars,cajun_creole
+42356,confectioners sugar,cajun_creole
+42356,sugar,cajun_creole
+42356,active dry yeast,cajun_creole
+42356,salt,cajun_creole
+42356,warm water,cajun_creole
+42356,cake,cajun_creole
+42356,all-purpose flour,cajun_creole
+42356,shortening,cajun_creole
+42356,milk,cajun_creole
+42356,vanilla extract,cajun_creole
+42356,glaze,cajun_creole
+8824,water,french
+8824,all-purpose flour,french
+8824,butter,french
+8824,eggs,french
+8824,salt,french
+8824,milk,french
+33843,apple cider vinegar,korean
+33843,Gochujang base,korean
+33843,red chili peppers,korean
+33843,salt,korean
+33843,minced garlic,korean
+33843,rice vinegar,korean
+33843,sugar,korean
+33843,sesame oil,korean
+33843,english cucumber,korean
+15246,white wine,french
+15246,salt,french
+15246,dried parsley,french
+15246,ground black pepper,french
+15246,ham,french
+15246,garlic powder,french
+15246,herb seasoning,french
+15246,boneless skinless chicken breast halves,french
+15246,condensed cream of chicken soup,french
+15246,swiss cheese,french
+15246,sour cream,french
+45207,fennel seeds,indian
+45207,kosher salt,indian
+45207,chicken breasts,indian
+45207,diced tomatoes,indian
+45207,cayenne pepper,indian
+45207,coriander,indian
+45207,clove,indian
+45207,plain yogurt,indian
+45207,ground black pepper,indian
+45207,heavy cream,indian
+45207,garlic,indian
+45207,onions,indian
+45207,sugar,indian
+45207,garam masala,indian
+45207,butter,indian
+45207,ginger,indian
+45207,cardamom,indian
+45207,cumin,indian
+45207,nutmeg,indian
+45207,fresh ginger,indian
+45207,cinnamon,indian
+45207,cilantro,indian
+45207,ground coriander,indian
+45207,basmati rice,indian
+16021,sugar,french
+16021,strawberries,french
+16021,vanilla extract,french
+16021,large eggs,french
+16021,fresh lemon juice,french
+16021,1% low-fat milk,french
+14276,milk,italian
+14276,rosemary needles,italian
+14276,sugar,italian
+14276,olive oil,italian
+14276,all-purpose flour,italian
+14276,coarse sugar,italian
+14276,active dry yeast,italian
+14276,salt,italian
+14276,warm water,italian
+14276,coarse sea salt,italian
+14276,black grapes,italian
+10956,yoghurt,indian
+10956,water,indian
+10956,ghee,indian
+10956,sugar,indian
+10956,salt,indian
+10956,active dry yeast,indian
+10956,bread flour,indian
+13987,pitted kalamata olives,greek
+13987,olive oil,greek
+13987,fresh lemon juice,greek
+13987,dried oregano,greek
+13987,black pepper,greek
+13987,salt,greek
+13987,cucumber,greek
+13987,tomatoes,greek
+13987,sourdough bread,greek
+13987,garlic cloves,greek
+13987,arugula,greek
+13987,sugar,greek
+13987,purple onion,greek
+13987,feta cheese crumbles,greek
+4266,garlic paste,indian
+4266,bay leaves,indian
+4266,black cardamom pods,indian
+4266,onions,indian
+4266,cooking oil,indian
+4266,green peas,indian
+4266,carrots,indian
+4266,water,indian
+4266,fresh green bean,indian
+4266,cumin seed,indian
+4266,basmati rice,indian
+4266,clove,indian
+4266,potatoes,indian
+4266,salt,indian
+4266,cinnamon sticks,indian
+42782,sugar,southern_us
+42782,flaked coconut,southern_us
+42782,vanilla extract,southern_us
+42782,chips,southern_us
+42782,butter,southern_us
+42782,egg yolks,southern_us
+42782,pastry shell,southern_us
+42782,corn starch,southern_us
+42782,half & half,southern_us
+42782,whipping cream,southern_us
+21575,fontina cheese,italian
+21575,parmesan cheese,italian
+21575,yellow onion,italian
+21575,pepper,italian
+21575,balsamic vinegar,italian
+21575,red bell pepper,italian
+21575,fresh basil,italian
+21575,large eggs,italian
+21575,garlic cloves,italian
+21575,olive oil,italian
+21575,salt,italian
+21575,bay leaf,italian
+40177,sugar,chinese
+40177,green onions,chinese
+40177,chili bean sauce,chinese
+40177,garlic cloves,chinese
+40177,water,chinese
+40177,dry sherry,chinese
+40177,peanut oil,chinese
+40177,dried red chile peppers,chinese
+40177,soy sauce,chinese
+40177,rice wine,chinese
+40177,green chilies,chinese
+40177,red bell pepper,chinese
+40177,boneless chicken breast,chinese
+40177,ginger,chinese
+40177,scallions,chinese
+40177,celery,chinese
+7438,garlic powder,southern_us
+7438,buttermilk,southern_us
+7438,hot sauce,southern_us
+7438,onion powder,southern_us
+7438,salt,southern_us
+7438,self-rising cornmeal,southern_us
+7438,cayenne,southern_us
+7438,paprika,southern_us
+7438,okra,southern_us
+7438,black pepper,southern_us
+7438,vegetable oil,southern_us
+7438,all-purpose flour,southern_us
+45462,peaches,southern_us
+45462,cinnamon sugar,southern_us
+45462,sugar,southern_us
+45462,butter,southern_us
+45462,self rising flour,southern_us
+45462,milk,southern_us
+45462,heavy cream,southern_us
+47045,olive oil,italian
+47045,clam juice,italian
+47045,salt,italian
+47045,bay scallops,italian
+47045,crushed red pepper flakes,italian
+47045,fresh parsley,italian
+47045,sun-dried tomatoes,italian
+47045,butter,italian
+47045,medium shrimp,italian
+47045,pasta,italian
+47045,lemon zest,italian
+47045,garlic,italian
+2417,sugar,indian
+2417,crushed red pepper flakes,indian
+2417,green chilies,indian
+2417,onions,indian
+2417,tomatoes,indian
+2417,pandanus leaf,indian
+2417,garlic,indian
+2417,black mustard seeds,indian
+2417,canola oil,indian
+2417,curry leaves,indian
+2417,frozen okra,indian
+2417,ginger,indian
+2417,cumin seed,indian
+2417,ground turmeric,indian
+2417,red chili powder,indian
+2417,seeds,indian
+2417,salt,indian
+2417,cinnamon sticks,indian
+18005,pepper,italian
+18005,grated parmesan cheese,italian
+18005,fresh mushrooms,italian
+18005,pearl onions,italian
+18005,butter,italian
+18005,water,italian
+18005,orzo pasta,italian
+18005,fresh parsley,italian
+18005,white wine,italian
+18005,garlic powder,italian
+18005,salt,italian
+4226,fresh raspberries,french
+4226,sugar,french
+4226,chambord,french
+4226,water,french
+30547,molasses,southern_us
+30547,buttermilk,southern_us
+30547,sugar,southern_us
+30547,unsalted butter,southern_us
+30547,all-purpose flour,southern_us
+30547,ground cloves,southern_us
+30547,cinnamon,southern_us
+30547,ground ginger,southern_us
+30547,baking soda,southern_us
+30547,salt,southern_us
+44279,light brown sugar,southern_us
+44279,vanilla extract,southern_us
+44279,half & half,southern_us
+44279,sugar,southern_us
+44279,chopped pecans,southern_us
+44279,butter,southern_us
+29685,cold water,chinese
+29685,olive oil,chinese
+29685,jalapeno chilies,chinese
+29685,ginger,chinese
+29685,corn starch,chinese
+29685,soy sauce,chinese
+29685,zucchini,chinese
+29685,sesame oil,chinese
+29685,rice vinegar,chinese
+29685,onions,chinese
+29685,baby bok choy,chinese
+29685,ground black pepper,chinese
+29685,sweet potatoes,chinese
+29685,salt,chinese
+29685,red bell pepper,chinese
+29685,savoy cabbage,chinese
+29685,water,chinese
+29685,extra firm tofu,chinese
+29685,diced tomatoes,chinese
+29685,carrots,chinese
+42079,black beans,mexican
+42079,butter,mexican
+42079,frozen corn,mexican
+42079,red bell pepper,mexican
+42079,green bell pepper,mexican
+42079,flour,mexican
+42079,garlic,mexican
+42079,green chilies,mexican
+42079,onions,mexican
+42079,chicken broth,mexican
+42079,flour tortillas,mexican
+42079,ground pork,mexican
+42079,cayenne pepper,mexican
+42079,sour cream,mexican
+42079,black pepper,mexican
+42079,chili powder,mexican
+42079,salt,mexican
+42079,shredded cheese,mexican
+42079,dried oregano,mexican
+8117,plain low-fat yogurt,french
+8117,cheese,french
+8117,cottage cheese,french
+8117,gran marnier,french
+8117,raspberries,french
+8117,orange zest,french
+8117,sugar,french
+8117,strawberries,french
+8061,sugar,korean
+8061,tortillas,korean
+8061,salt,korean
+8061,chili flakes,korean
+8061,pork belly,korean
+8061,ginger,korean
+8061,kimchi,korean
+8061,sambal ulek,korean
+8061,soy sauce,korean
+8061,sesame oil,korean
+8061,sauce,korean
+8061,dark soy sauce,korean
+8061,water,korean
+8061,garlic,korean
+8061,toasted sesame seeds,korean
+25090,soy sauce,chinese
+25090,starch,chinese
+25090,scallions,chinese
+25090,black vinegar,chinese
+25090,red chili peppers,chinese
+25090,sweet soy sauce,chinese
+25090,roasted peanuts,chinese
+25090,onions,chinese
+25090,green bell pepper,chinese
+25090,white pepper,chinese
+25090,sesame oil,chinese
+25090,oil,chinese
+25090,sugar,chinese
+25090,water,chinese
+25090,garlic,chinese
+25090,shrimp,chinese
+20078,coriander powder,indian
+20078,yellow onion,indian
+20078,ground cumin,indian
+20078,red bliss potato,indian
+20078,ground turmeric,indian
+20078,vegetable oil,indian
+20078,cayenne pepper,indian
+20078,garam masala,indian
+20078,salt,indian
+20078,chicken,indian
+48067,cilantro,mexican
+48067,sugar,mexican
+48067,salt,mexican
+48067,white vinegar,mexican
+48067,purple onion,mexican
+48067,pepper,mexican
+48067,plum tomatoes,mexican
+46609,sugar,moroccan
+46609,olive oil,moroccan
+46609,harissa,moroccan
+46609,sweet paprika,moroccan
+46609,couscous,moroccan
+46609,dressing,moroccan
+46609,water,moroccan
+46609,almonds,moroccan
+46609,salt,moroccan
+46609,garlic cloves,moroccan
+46609,cumin,moroccan
+46609,pepper,moroccan
+46609,coriander seeds,moroccan
+46609,crushed red pepper,moroccan
+46609,cumin seed,moroccan
+46609,fresh lime juice,moroccan
+46609,caraway seeds,moroccan
+46609,fresh cilantro,moroccan
+46609,coriander powder,moroccan
+46609,sweet corn,moroccan
+46609,grate lime peel,moroccan
+46609,chicken,moroccan
+17166,sesame seeds,japanese
+17166,english cucumber,japanese
+17166,wakame,japanese
+17166,salt,japanese
+17166,japanese cucumber,japanese
+17166,sugar,japanese
+17166,rice vinegar,japanese
+23378,pepper,filipino
+23378,salt,filipino
+23378,sugar,filipino
+23378,vinegar,filipino
+23378,garlic cloves,filipino
+23378,water,filipino
+23378,scallions,filipino
+23378,soy sauce,filipino
+23378,cooking oil,filipino
+23378,medium shrimp,filipino
+17701,steel-cut oats,irish
+17701,large eggs,irish
+17701,all-purpose flour,irish
+17701,baking soda,irish
+17701,baking powder,irish
+17701,whole wheat flour,irish
+17701,cooking spray,irish
+17701,wheat germ,irish
+17701,brown sugar,irish
+17701,low-fat buttermilk,irish
+17701,salt,irish
+46354,sugar,british
+46354,almond extract,british
+46354,pastry dough,british
+46354,rice flour,british
+46354,strawberry jam,british
+46354,butter,british
+46354,eggs,british
+46354,baking powder,british
+1674,salt,italian
+1674,olive oil,italian
+1674,spaghettini,italian
+1674,broccoli,italian
+1674,ground black pepper,italian
+2702,bread crumb fresh,french
+2702,sea scallops,french
+2702,dry white wine,french
+2702,California bay leaves,french
+2702,water,french
+2702,parmigiano reggiano cheese,french
+2702,salt,french
+2702,onions,french
+2702,kosher salt,french
+2702,unsalted butter,french
+2702,heavy cream,french
+2702,flat leaf parsley,french
+2702,black pepper,french
+2702,large egg yolks,french
+2702,mushrooms,french
+2702,all-purpose flour,french
+23735,whole almonds,french
+23735,honey,french
+23735,whipping cream,french
+23735,saffron threads,french
+23735,sugar,french
+23735,whole milk,french
+23735,brown sugar,french
+23735,water,french
+23735,dried lavender blossoms,french
+23735,grated orange peel,french
+23735,large egg yolks,french
+23735,salt,french
+13139,pepper,indian
+13139,extra-virgin olive oil,indian
+13139,black mustard seeds,indian
+13139,basmati rice,indian
+13139,tomatoes,indian
+13139,garam masala,indian
+13139,soft-boiled egg,indian
+13139,onions,indian
+13139,smoked haddock fillet,indian
+13139,salt,indian
+13139,bay leaf,indian
+13139,cumin,indian
+13139,garlic paste,indian
+13139,fresh thyme,indian
+13139,green chilies,indian
+13139,coriander,indian
+23974,sugar,french
+23974,heavy cream,french
+23974,fresh lemon juice,french
+23974,large eggs,french
+23974,fresh orange juice,french
+23974,orange zest,french
+23974,cream of tartar,french
+23974,whole milk,french
+23974,salt,french
+23974,large egg whites,french
+23974,sweetened coconut flakes,french
+23974,fresh pineapple,french
+47421,sugar,southern_us
+47421,dry mustard,southern_us
+47421,zesty italian dressing,southern_us
+47421,baking soda,southern_us
+47421,beef broth,southern_us
+47421,collard greens,southern_us
+47421,bacon,southern_us
+21297,sugar,chinese
+21297,red cabbage,chinese
+21297,ginger,chinese
+21297,chow mein noodles,chinese
+21297,white pepper,chinese
+21297,boneless skinless chicken breasts,chinese
+21297,rice vinegar,chinese
+21297,soy sauce,chinese
+21297,green onions,chinese
+21297,garlic,chinese
+21297,carrots,chinese
+21297,romaine lettuce,chinese
+21297,sliced almonds,chinese
+21297,sesame oil,chinese
+21297,edamame,chinese
+39095,brown sugar,mexican
+39095,flour,mexican
+39095,salt,mexican
+39095,oil,mexican
+39095,ground cumin,mexican
+39095,black pepper,mexican
+39095,crushed red pepper flakes,mexican
+39095,chili con carne,mexican
+39095,sour cream,mexican
+39095,tomato sauce,mexican
+39095,chicken breasts,mexican
+39095,all-purpose flour,mexican
+39095,Mexican cheese,mexican
+39095,chicken broth,mexican
+39095,black beans,mexican
+39095,garlic,mexican
+39095,cream cheese,mexican
+39095,dried oregano,mexican
+14602,butter,southern_us
+14602,pecans,southern_us
+14602,all-purpose flour,southern_us
+14602,cold water,southern_us
+14602,vanilla extract,southern_us
+14602,sugar,southern_us
+2572,eggs,russian
+2572,baking powder,russian
+2572,milk,russian
+2572,butter,russian
+2572,ground cinnamon,russian
+2572,flour,russian
+2572,sugar,russian
+2572,vegetable oil,russian
+9202,vegetable oil,southern_us
+9202,powdered sugar,southern_us
+9202,strawberries,southern_us
+9202,refrigerated piecrusts,southern_us
+9202,sugar,southern_us
+9202,corn starch,southern_us
+9067,pepper,mexican
+9067,ground black pepper,mexican
+9067,garlic,mexican
+9067,game,mexican
+9067,olive oil,mexican
+9067,lemon,mexican
+9067,red bell pepper,mexican
+9067,ground cumin,mexican
+9067,corn kernels,mexican
+9067,chili powder,mexican
+9067,salt,mexican
+9067,chopped cilantro fresh,mexican
+9067,lime,mexican
+9067,jalapeno chilies,mexican
+9067,purple onion,mexican
+9067,chopped cilantro,mexican
+16940,sugar,british
+16940,salt,british
+16940,baking powder,british
+16940,extra sharp cheddar cheese,british
+16940,heavy cream,british
+16940,chopped fresh chives,british
+16940,all-purpose flour,british

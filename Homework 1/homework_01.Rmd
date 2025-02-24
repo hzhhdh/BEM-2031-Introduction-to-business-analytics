@@ -1,0 +1,167 @@
+---
+title: "Homework 01"
+author: '680011465'
+date: "2021-02-02T15:00:00 GMT"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: journal
+    toc: yes
+    toc_float: yes
+editor_options:
+  chunk_output_type: console
+---
+
+```{r packages, include=FALSE}
+# -- packages here -- 
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(pbapply)
+library(Matrix)
+library(factoextra)
+```
+
+\pagebreak
+
+# 1. Read and Investigate the Data
+
+Read in the data.
+```{r read_data}
+recipes <- read.csv(file.choose())
+```
+
+```{r view & attach file "recipes" to command}
+View(recipes)
+attach(recipes)
+```
+
+Make sure the ID variable is a character or factor, not numeric.
+```{r recipe_id}
+glimpse(recipes)
+recipes$recipe_id <- as.character(recipes$recipe_id)
+class(recipes$recipe_id)
+```
+> **Initially, the data set shows that it an 'integer'. After using the 'as.character' command, it changes the 'recipe_id' to 'character'**
+
+What variables are in the dataset? What data type are they?
+```{r data_structure}
+glimpse(recipes)
+```
+> **There are 3 variables. They are the recipe id, ingredients and cuisine. All of the 3 variables are character.**
+
+How many different unique ingredients are there?
+```{r unique_inredients}
+n_distinct(ingredient)
+```
+> **According to this command, there are 722 unique ingredients.**
+
+What are the top five most frequent ingredients?
+```{r common_ingredients}
+recipes %>%
+  count(ingredient) %>%
+  top_n(5) %>% 
+  arrange(desc(n))
+```
+> **The top 5 ingredients are salt, sugar, water, all-purpose flour, garlic**
+
+Create a frequency bar chart of the ingredients showing the distribution of ingredients.
+```{r ingredient_distribution, echo=TRUE}
+recipes %>% 
+  mutate(ingredient = fct_infreq(ingredient)) %>% 
+  ggplot() +
+  geom_bar(mapping = aes(x = ingredient))+
+  labs(title = "Distribution of ingredients")+
+  theme(plot.title = element_text(face = "bold"))
+  scale_x_discrete(labels = NULL)
+```
+Optional: Create a dot plot of the top 5% of ingredients.
+```{r top_dot_plot}
+recipes %>%
+  mutate(ingredient = fct_infreq(ingredient)) %>% 
+  count(ingredient) %>%
+  top_frac(0.05, n) %>% 
+  ggplot() +
+  geom_point(mapping = aes (x = n, y = ingredient)) +
+  labs(title = "top 5% of ingredients")+
+  theme(plot.title = element_text(face = "bold"))
+```
+
+\pagebreak
+
+# 2. Cluster Recipes
+
+Uses this Jaccard similarity function to compare two sets of ingredients for a pair of recipes.
+```{r source_jaccard}
+source('jaccard_matrix.R') 
+```
+```{r compute_jaccard}
+# m <- jaccard_matrix_fast(d = recipes, 
+#                     unit_var = 'recipe_id', 
+#                     item_var = 'ingredient', 
+#                     distance = T)
+# saveRDS(m, file = "jaccard_distance_recipes.rds")
+m <- readRDS("jaccard_distance_recipes.rds")
+```
+
+Use `kmeans` to cluster the recipes. First determine the appropriate number of centroids to use. Compute the total within sum of squares using between one and twenty clusters. Then plot the results. Use the elbow method to determine number of clusters.
+```{r}
+kmeans(m, 3)
+fviz_nbclust(as.matrix(m),kmeans, method = "wss", k.max = 20)
+```
+> **Base on the  elbow method, I would say that 3 clusters should be ideal for this data. This is because the total within sum of square for 2-3 is bigger than the total within sum of square for 3-4. Therefore, 3 clusters would be the optimal number. **
+
+Use your chosen number of clusters to cluster the recipes. Use a high `nstart` to ensure a good quality solution.
+```{r kmeans}
+km <- kmeans(as.matrix(m),centers = 3, nstart = 50)
+```
+
+Use `fviz_cluster` to visualize the clusters. What patterns do you see?
+```{r kmeans_viz}
+fviz_cluster(km, data = as.matrix(m), geom = "point") +
+  labs(title = "Cluster Recipes")+
+  theme(plot.title = element_text(face = "bold"))
+```
+> **Using the "fviz_cluster", I can see a clear distinction between the 3 cluster. Furthermore, the boundaries of the cluster are bounded by the furthest ingredient/cuisine from the centriod of the cluster.**
+
+\pagebreak
+# 3. Investigate Clusters
+
+Merge the clusters back into the recipe dataset so that each recipe has a new variable with the cluster ID.
+```{r merge_clusters}
+x <- tibble(recipe_id = names(km$cluster),
+    cluster = as.character(km$cluster))
+recipe_id_cluster <- left_join(recipes, x, by = "recipe_id")
+```
+
+What are the top 5 ingredients and cuisines in each cluster?
+```{r cluster_ingredients}
+recipe_id_cluster %>% 
+  count(ingredient, cluster) %>% 
+  group_by(cluster) %>% 
+  arrange(cluster, desc(n)) %>% 
+  top_n(5)
+```
+> **For the 1st cluster, the top 5 ingredients are salt, olive oil, onions, garlic cloves, pepper.For the 2nd cluster, the top 5 ingredients are sugar, water, garlic, butter, soy sauce. For the 3rd cluster, the top 5 ingredients are salt, sugar, all-purpose flour water, unsalted butter**
+
+```{r cluster_cuisine}
+recipe_id_cluster %>% 
+  count(cuisine, cluster) %>% 
+  group_by(cluster) %>% 
+  arrange(cluster, desc(n)) %>% 
+  top_n(5)
+```
+> **For the 1st cluster, the top 5 cuisine are Mexican, Italian, Indian, french, Cajun_reole. For the 2nd cluster, the top 5 cuisine are Chinese, French, Southern US, Vietnamese, Italian. For the 3rd cluster, the top 5 cuisine are Southern US, French, Italian, Chinese British** 
+
+\pagebreak
+# 4. Conclusion
+
+What patterns did the cluster analysis and PCA from `fviz_cluster` reveal?
+> **The cluster analysis suggest a clear distinction of clusters such that the boundaries between clusters do not overlap each other. The analysis justify that ingredients/cuisines in cluster 1 has a better grouping than the other analysis. This is because cluster 1 has a higher density of data, while cluster 2 & 3's data spreads out evenly. **
+
+What further cleaning or processing of the data do you think is necessary?
+> **Firstly, there are too many adjectives for ingredients. For example 'skim milk', 'whole milk'and '1% low fat milk' can be categorize as 'milk'. By providing adjectives, the algorithm will treat all of these ingredients as separate products, which decreases the accuaracy of the data.  Secondly, this data includes 1 regional cuisine (Southern US) and the rest are nation-based cuisine. I would argue this is an inconsistent categorization of data that would underestimate the data.**
+
+What other visualizations or analyses could you perform explain the patterns that you see in the data?
+> **There are 3 other visualizations to explain the patterns. Firstly, I would recommend to use PCA Biplot to distinguish the uniqueness of the ingredients/cuisine. I would expect that the further away from the center, it means that an ingredients will be more unique to a specific cuisine. Secondly, I would use a network analysis to test out if there is any relationship between cuisines based on the ingredients given. I would expect common ingredients such as Milk and Sugar to have a higher connection compare to other ingredients. Lastly, I would attempt to make use of a scatterplot with a regression line between 2 different cuisines' ingredients and analyse how similar they are. It helps to group similar cuisines together and creates a cluster with a higher similarities. **
