@@ -1,0 +1,1095 @@
+---
+title: "HR Analytics - Summative Assessment"
+author: your_id_here
+output: 
+  html_document: 
+    theme: flat
+    toc: yes
+    toc_float: yes
+editor_options: 
+  chunk_output_type: console
+---
+\pagebreak
+```{r setup, include=FALSE}
+rm(list=ls())
+gc()
+
+library(tidyverse)
+ library(corrplot)     
+ library(randomForest)
+ library(knitr)
+ library(kableExtra)
+ library(pbapply)
+ library(Matrix)
+ library(factoextra)
+ library(xgboost)
+ library(fastDummies)
+ library(ggrepel)
+ library(glmnet)
+  library(janitor)
+library(ROSE)
+library(rpart)
+```
+
+## Read the data
+
+Be sure to ask questions here:
+<https://docs.google.com/document/d/128siy6JNSyG1r56QloVX4B_3-l501oSOhAgn6YS2rHc/edit?usp=sharing>
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv')
+glimpse(hr)
+summary(hr)
+```
+
+## Duplicate check
+
+Check for and remove duplicates: This chunk finds that there are many people who have the exact same details and it's duplicates more than 3 times.
+
+```{r}
+hr %>% 
+  group_by_all() %>% 
+  summarize(n = n()) %>% 
+  group_by(left) %>% 
+  summarise(mean_duplicates = mean(n))
+
+```
+
+```{R Maximum duplicate check}
+hr %>% 
+  group_by_all() %>% 
+  summarize(n = n()) %>% 
+  group_by(left) %>% 
+  summarise(max_duplicates = max(n))
+```
+
+```{r}
+d <- hr %>% 
+  group_by_all() %>% 
+  summarize(dupe_count = n()) %>% 
+  ungroup() %>% 
+  mutate(left = ifelse(left == 1, 'Left', 'Stayed'))
+
+ggplot(filter(d, dupe_count > 0), 
+       aes(x = dupe_count, group = left, fill = left, y = ..prop..)) +
+  geom_bar(position = 'dodge', alpha = 2, width = 0.5) +
+  scale_x_continuous(breaks = 1:6, labels = 1:6) +
+  labs(title = "Occurance of data")
+
+```
+
+>Base on the data, there ar  more leavers than stayers. This means the day tends to be more biase to leavers than stayers. 
+
+
+Remove the duplicates
+```{r}
+hr_new <- unique(hr) 
+```
+
+```{R probability}
+prop.table(table(hr_new$left))
+```
+
+```{R oversamping }
+hr_new_oversample <- ovun.sample(left ~., data = hr_new, method = "both", p=0.5, N = 14999, seed = 1)$data
+hr_new_oversample <- as.numeric(hr_new_oversample)
+table(hr_new_oversample$left)
+```
+## Linear regression of satisfaction
+
+```{r}
+sat_lm <- lm(satisfaction_level ~ ., data = hr_new_oversample)
+summary(sat_lm)
+plot(sat_lm)
+```
+
+Add an ID variable
+```{r}
+hr_new_oversample$id <- as.character(1:nrow(hr_new_oversample))
+```
+
+## Correlation plot
+
+```{r}
+library(corrplot)
+m_cor <- hr_new_oversample %>% 
+  select_if(is.numeric) %>% 
+  cor()
+corrplot(m_cor, method = 'color', diag = F, tl.col = 'grey20', addrect = 2, order = 'hclust')
+```
+
+```{r}
+reshape2::melt(m_cor) %>% 
+  filter(value != 1) %>% 
+  arrange(abs(value)) %>% 
+  filter(Var1 == 'left')
+```
+>We want to see what correlated with leaving
+
+Create dummy columns for these variables.
+
+```{r}
+library(fastDummies)
+hr <- dummy_cols(hr, select_columns = c('salary', 'sales'))
+```
+
+## PCA
+>Shows the dimention and varience
+
+```{r}
+library(factoextra)
+library(FactoMineR)
+
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  select(-sales)
+
+hr_pca <- hr %>% 
+  select_if(is.numeric) %>% 
+  PCA
+
+hr_num <- hr %>% 
+  select(satisfaction_level, last_evaluation, number_project, average_montly_hours, time_spend_company, Work_accident, promotion_last_5years)
+
+hr_pca <- PCA(hr_num)
+fviz_pca_biplot(hr_pca, geom = 'point', col.ind = hr$left, axes = c(2,3))
+```
+
+```{R new}
+fviz_eig(hr_pca)
+```
+
+```{R kmeans cluster plot}
+hr1 <- hr %>% 
+  filter(left == 1) %>% 
+  select(satisfaction_level, last_evaluation)
+
+km1 <- hr1 %>% 
+  kmeans(centers = 3, nstart = 20)
+
+hr1$cluster <- as.character(km1$cluster)
+
+ggplot(hr1, aes(x = satisfaction_level, y = last_evaluation, color = cluster)) +
+  geom_point(alpha = 0.5)
+
+```
+## Histogram of departments
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3))
+
+hr <- hr %>% 
+  mutate(sales = case_when(sales == 'sales' ~ 'Sales',
+                           sales == 'technical' ~ 'Technical',
+                           T ~ sales)) %>% 
+  rename(department =  sales) %>% 
+  mutate(department = fct_infreq(department))
+
+ggplot(hr, aes(x = salary)) +
+  geom_bar()
+
+```
+
+## Leavers by department
+
+```{r}
+d <- hr %>% 
+  group_by(department, left) %>%
+  summarize(n = n()) %>% 
+  mutate(proportion = n / sum(n))
+
+ggplot(d) +
+  geom_bar(stat = 'identity', position = 'stack',
+           aes(x = department, y = n, fill= left))
+```
+```{R newset}
+d %>% 
+  ungroup() %>% 
+  filter(left == 1) %>% 
+  mutate(department = fct_reorder(department, proportion)) %>% 
+  ggplot() +
+  geom_segment(x = 0, aes(xend = proportion, y = department, yend = department)) +
+  geom_point(aes(y = department, x = proportion, size = n)) +
+  scale_x_continuous('Proportion of Leavers')
+```
+
+## Tenure
+
+```{r}
+d <- hr %>% 
+  group_by(time_spend_company) %>% 
+  summarize(n = n()) %>% 
+  mutate(p = n / sum(n))
+
+ggplot(hr, aes(x = time_spend_company)) +
+  geom_bar() +
+  scale_x_continuous("Tenure (years)",breaks = 1:10, limits = c(1, 11)) +
+  theme_minimal() +
+  theme(panel.grid = element_blank())
+
+```
+
+## Tenure and satisfaction
+
+```{r}
+a <- hr_new_oversample %>% 
+  group_by(sales, left) %>%
+  summarize(n = n()) %>% 
+  mutate(proportion = n / sum(n))
+
+ggplot(a, aes(x = time_spend_company, y = satisfaction_level)) +
+  pie(alpha = 0.2) +
+  scale_x_continuous(breaks = 1:10) +
+  theme_minimal() + theme(panel.grid = element_blank())
+```
+
+```{R pie chart}
+pie <- ggplot(hr_new_oversample, aes(x = n , y= satisfaction_level,fill = factor(sales))) + 
+  geom_bar(width = 1, stat = "identity") +
+  theme(axis.line = element_blank(), 
+        plot.title = element_text(hjust=0.5))
+
+pie + coord_polar(theta = "y", start=0)
+```    
+## Tenure and Department
+
+```{r}
+ggplot(hr_new_oversample, aes(x = time_spend_company y = ), fill(department)) +
+  geom_point(alpha = 0.2) +
+  scale_y_continuous(breaks = 1:10) +
+  theme_minimal() + theme(panel.grid = element_blank())
+```
+
+
+```{r}
+d <- hr %>% 
+  group_by(department, time_spend_company)%>% 
+  summarize(n = n()) %>% 
+  mutate(p = n / sum(n))
+
+ggplot(d, aes(x = time_spend_company, y = p, fill = department)) +
+  geom_bar(stat = 'identity', position = 'fill') +
+  scale_fill_brewer(type = 'qual', palette = 3) +
+  scale_x_continuous("Tenure (years)",breaks = 1:10, limits = c(1, 11)) +
+  theme_minimal() +
+  theme(panel.grid = element_blank())
+```
+
+
+
+## K-means
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  select(-sales) %>% 
+  mutate(id = row_number())
+
+hr1 <- hr %>% 
+  filter(left == 1) %>% 
+  select(id, satisfaction_level, last_evaluation)
+
+km1 <- hr1 %>% 
+  select(-id) %>% 
+  kmeans(centers = 3, nstart = 20)
+
+hr1$cluster <- as.character(km1$cluster)
+
+hr_clust <- left_join(hr, 
+          select(hr1, id, cluster), 
+          by = 'id') %>% 
+  mutate(cluster = ifelse(is.na(cluster), "stayed", cluster))
+  
+
+ggplot(hr_clust, aes(x = satisfaction_level, y = last_evaluation, color = cluster)) +
+  geom_point(alpha = 0.5)
+
+ggplot(hr_clust, aes(x = number_project, y = average_montly_hours, color = cluster)) +
+  geom_jitter(alpha = 0.5) +
+  facet_wrap(~ cluster)
+```
+
+Dot plot
+
+```{r}
+d <- hr_clust %>% 
+  mutate(satisfaction_level = scales::rescale(satisfaction_level)) %>% 
+  mutate(number_project = scales::rescale(number_project)) %>% 
+  mutate(average_montly_hours = scales::rescale(average_montly_hours)) %>% 
+  group_by(cluster) %>% 
+  summarize(`Satisfaction` = mean(satisfaction_level),
+            `Number of Projects` = mean(number_project),
+            `Average Monthly Hours` = mean(average_montly_hours)) %>% 
+  gather('variable', 'value', -cluster)
+
+ggplot(d) +
+  geom_point(aes(x = value, y = variable, color = cluster))
+  
+
+```
+
+
+```{r}
+hr1 <- hr %>% 
+  filter(left == 1) %>% 
+  select(time_spend_company, number_project)
+
+km1 <- hr1 %>% 
+  kmeans(centers = 3, nstart = 20)
+
+hr1$cluster <- as.character(km1$cluster)
+
+ggplot(hr1, aes(x = time_spend_company, y = number_project, color = cluster)) +
+  geom_jitter(alpha = 0.5)
+```
+
+
+
+```{r}
+library(randomForest)
+
+hr_num <- hr %>% 
+  select(left, satisfaction_level, last_evaluation, number_project, average_montly_hours, time_spend_company, Work_accident, promotion_last_5years) %>% 
+  mutate(left = as.factor(left))
+
+f <- randomForest(left ~ ., data = hr_num)
+
+varImpPlot(f)
+```
+
+## Survival Model
+
+```{r}
+library(survival)
+library(survminer)
+
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  select(-sales)
+
+x_surv <- Surv(time = hr$time_spend_company, event = hr$left)
+f_surv <- survfit(x_surv ~ salary, data = hr)
+ggsurvplot(f_surv, data = hr)
+
+x_surv <- Surv(time = hr$time_spend_company, event = hr$left)
+f_surv <- survfit(x_surv ~ salary, data = hr)
+ggsurvplot(f_surv, data = hr)
+
+# hr <- dummy_cols(hr, select_columns = c('salary'))
+f_coxph <- coxph(x_surv ~ satisfaction_level + last_evaluation + 
+                   I(number_project^2) +
+                   number_project + average_montly_hours +
+                   salary, data = hr)
+ggforest(f_coxph)
+
+d <- hr %>% 
+  # filter(last_evaluation > 0.8, satisfaction_level > 0.8) %>% # super people
+  filter(last_evaluation < 0.6, satisfaction_level < 0.4) %>% # losers
+  mutate(satisfaction_level = as.numeric(scale(satisfaction_level))) %>% 
+  mutate(last_evaluation = as.numeric(scale(last_evaluation))) %>% 
+  mutate(number_project = as.numeric(scale(number_project))) %>% 
+  mutate(average_montly_hours = as.numeric(scale(average_montly_hours))) %>% 
+  mutate(salary = as.numeric(scale(salary)))
+x_surv <- Surv(time = d$time_spend_company, event = d$left)
+f_coxph <- coxph(x_surv ~ satisfaction_level + last_evaluation + 
+                   I(number_project^2) + number_project + 
+                   average_montly_hours + salary, 
+                 data = d)
+ggforest(f_coxph, data = d, main = 'Hazard ratio for Winners')
+
+
+```
+
+```{r}
+x_surv <- Surv(time = hr$time_spend_company, 
+               event = hr$promotion_last_5years)
+f_surv <- survfit(x_surv ~ number_project, data = hr)
+ggsurvplot(f_surv, data = hr)
+
+f_coxph <- coxph(x_surv ~ satisfaction_level + last_evaluation + 
+                   I(number_project^2) +
+                   number_project + average_montly_hours, 
+                 data = hr)
+ggforest(f_coxph)
+```
+
+## Survival model plotting
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  select(-sales) %>% 
+  mutate(num_project2 = number_project^2)
+
+x_surv <- Surv(time = hr$time_spend_company, 
+               event = hr$promotion_last_5years)
+f_coxph <- coxph(x_surv ~ satisfaction_level + last_evaluation + 
+                   num_project2 + number_project + average_montly_hours, 
+                 data = hr)
+```
+
+```{r}
+library(iml)
+d <- hr %>% 
+  select(satisfaction_level, last_evaluation, 
+         num_project2, number_project, average_montly_hours, left) %>% 
+  sample_frac(size = 0.2)
+cox_pred_fun <- function(model, newdata) {
+  exp(predict(model, newdata = newdata))
+}
+cox_pred <- Predictor$new(model = f_coxph, data = d, y = hr$left,
+                          predict.fun = cox_pred_fun)
+
+imp <- FeatureImp$new(cox_pred, loss = "ce")
+plot(imp)
+```
+
+
+
+
+## Random forest to predict department
+
+```{r}
+rf_dept <- randomForest(department ~ satisfaction_level + 
+                          last_evaluation + number_project + average_montly_hours +
+                          time_spend_company + Work_accident, data = hr, ntree = 100)
+varImpPlot(rf_dept)
+```
+
+## Residual salary
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) 
+f_salary <- lm(salary ~ time_spend_company, data = hr)
+
+residuals(f_salary) %>% qplot(bins = 100)
+
+hr$salary_time_residual <- residuals(f_salary)
+
+
+hr_num <- hr %>% 
+  select(left, satisfaction_level, last_evaluation, number_project, average_montly_hours, time_spend_company, Work_accident, promotion_last_5years, salary_time_residual) %>% 
+  mutate(left = as.factor(left))
+
+library(randomForest)
+hr_rf <- randomForest(left ~ ., data = hr_num, ntree = 100)
+varImpPlot(hr_rf)
+```
+
+ROC for this model
+
+```{r}
+library(pROC)
+d <- tibble(pred = predict(hr_rf, type = 'prob')[,2],
+            obs = hr_num$left)
+hr_rf_roc <- roc(d, obs, pred)
+plot(hr_rf_roc, print.auc = T)
+```
+
+## Random Forest without Job Satisfaction
+
+```{r}
+library(randomForest)
+hr_rf_nosat <- randomForest(left ~ ., 
+                      data = hr_num %>% select(-satisfaction_level), 
+                      ntree = 100)
+varImpPlot(hr_rf_nosat)
+d <- tibble(pred = predict(hr_rf_nosat, type = 'prob')[,2],
+            obs = hr_num$left)
+hr_rf_nosat_roc <- roc(d, obs, pred)
+plot(hr_rf_nosat_roc, print.auc = T)
+```
+
+
+## Partial Dependence Plot
+Need to install `iml`, need to install `devtools`
+
+```{r}
+library(iml)
+library(randomForest)
+
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  select(-sales) %>% 
+  mutate(left = as.factor(left))
+
+hr_rf <- randomForest(left ~ ., data = hr, ntree = 100)
+
+rf_pred <- Predictor$new(hr_rf, type = 'prob', class = 2,
+                        data = hr %>% select(-left), 
+                        y = as.numeric(as.character(hr$left)))
+
+rf_imp <- FeatureImp$new(rf_pred, loss = "f1")
+plot(rf_imp)
+```
+
+```{r}
+hr_rf_pdp <- FeatureEffect$new(rf_pred, method = 'pdp',
+                                 feature = "satisfaction_level", 
+                                 # center.at = 3,
+                                 grid.size = 20)
+plot(hr_rf_pdp) + theme_bw()
+```
+
+```{r}
+hr_rf_pdp2 <- FeatureEffect$new(rf_pred, method = 'pdp', 
+                            feature = c('satisfaction_level', 'last_evaluation'), grid.size = 10)
+plot(hr_rf_pdp2) + 
+  theme_bw() +
+  scale_fill_viridis_c()
+```
+
+```{r}
+hr_rf_ale <- FeatureEffect$new(rf_pred, method = 'ale',
+                                 feature = c("satisfaction_level", "number_project"),
+                                 # center.at = median(hr$satisfaction_level),
+                                 grid.size = 100)
+p1 <- plot(hr_rf_ale) + scale_fill_viridis_c() + theme_bw()
+
+p2 <- ggplot(hr, aes(x = satisfaction_level, y = number_project)) +
+  geom_point(position = position_jitter(height = 0.2), alpha = 0.2) +
+  theme_minimal()
+
+library(gridExtra)
+grid.arrange(p1, p2)
+```
+
+
+## Shapley Values
+
+```{r}
+x_selected <- sample_n(hr_num, 1) %>% 
+  select(-left)
+hr_pred_shapley <- Shapley$new(rf_pred, x.interest = x_selected)
+plot(hr_pred_shapley)
+```
+
+
+## Radar Chart
+
+```{r}
+library(fmsb)
+
+hr <- read_csv('./kaggle_hr_analytics.csv')
+
+d <- hr %>% 
+  group_by(left) %>% 
+  summarize(satisfaction_level = mean(satisfaction_level),
+            last_evaluation = mean(last_evaluation),
+            number_project = mean(number_project),
+            average_montly_hours = mean(average_montly_hours),
+            time_spend_company = mean(time_spend_company)) %>% 
+  mutate(left = ifelse(left == 1, 'Left', 'Stayed'))
+
+d_max <- hr %>% 
+  select(one_of(c('satisfaction_level','last_evaluation','number_project','average_montly_hours','time_spend_company'))) %>% 
+  summarize_all(max) %>% 
+  mutate(left = 'max')
+d_min <- hr %>% 
+  select(one_of(c('satisfaction_level','last_evaluation','number_project','average_montly_hours','time_spend_company'))) %>% 
+  summarize_all(min) %>% 
+  mutate(left = 'min')
+
+d <- bind_rows(d_max, d_min, d) %>% 
+  as.data.frame
+
+rownames(d) <- d$left
+d$left <- NULL
+
+radarchart(d, axistype = 0, 
+           plwd = 3, plty = 1,
+           cglcol="grey", cglty=1, axislabcol="grey", cglwd=0.8,
+           vlcex=0.8)
+
+```
+
+## Radar chart data as a bar chart instead
+
+```{r}
+d <- hr %>% 
+  select(one_of(c('left','satisfaction_level','last_evaluation','number_project','average_montly_hours','time_spend_company'))) %>% 
+  mutate_all(scales::rescale) %>%
+  group_by(left) %>% 
+  summarize_all(mean) %>% 
+  mutate(left = ifelse(left == 1, 'Left', 'Stayed')) %>% 
+  gather(variable, value, -left)
+
+ggplot(d) +
+  geom_bar(stat = 'identity', position = 'dodge2',
+           aes(x = left, y = value, fill = left)) +
+  facet_wrap(~ variable, scales = 'free')
+
+ggplot(d) +
+  geom_point(size = 5, aes(x = value, y = variable, color = left)) +
+  scale_y_discrete('') +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(), 
+        panel.grid.major.y = element_line(linetype = 2, color = 'grey40')) +
+  geom_vline(xintercept = 0)
+```
+
+## Ridge plot
+
+```{r}
+library(ggridges)
+d <- hr %>% 
+  select(one_of(c('left','satisfaction_level','last_evaluation','number_project','average_montly_hours','time_spend_company'))) %>% 
+  mutate_all(scales::rescale) %>%
+  mutate(left = ifelse(left == 1, 'Left', 'Stayed')) %>% 
+  gather(variable, value, -left)
+
+
+ggplot(d, aes(x = value, y = variable, fill = left)) +
+  geom_density_ridges(alpha = 0.6, color = 'white') +
+  theme_ridges() + 
+  theme(legend.position = "none")
+```
+
+
+## Decision tree model
+
+```{r}
+library(rpart)
+library(rpart.plot)
+library(pROC)
+
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  select(-sales) %>% 
+  mutate(left = as.factor(left))
+```
+
+```{r}
+cv_set <- sample(1:10, size = nrow(hr), replace = T)
+
+hr_test <- hr[cv_set == 1, ]
+hr_train <- hr[cv_set != 1, ]
+
+hr_dt <- rpart(left ~ satisfaction_level + last_evaluation + number_project + 
+                 average_montly_hours + 
+                 time_spend_company + Work_accident + 
+                 promotion_last_5years + salary, 
+               data = hr_train, 
+               control = rpart.control(maxdepth = 3, cp = 0),
+               model = T)
+rpart.plot(hr_dt)
+```
+
+## K-fold cross validation
+
+```{r}
+kfolds <- 10
+cv_folds <- sample(1:kfolds, size = nrow(hr), replace = T)
+
+all_auc <- numeric(kfolds)
+all_acc <- numeric(kfolds)
+for(k in 1:kfolds) {
+  print(k)
+  hr_test <- hr[cv_folds == k, ]
+  hr_train <- hr[cv_folds != k, ]
+  
+  hr_dt <- rpart(left ~ ., data = hr_train, control = rpart.control(maxdepth = 3))
+  d <- tibble(pred = predict(hr_dt, newdata = hr_test)[,2],
+              pred_class = predict(hr_dt, newdata = hr_test, type = 'class'),
+              obs = hr_test$left)
+  dt_roc_test <- roc(d, obs, pred)
+  all_auc[k] <- auc(dt_roc_test)
+  all_acc[k] <- sum(d$obs == d$pred_class) / nrow(hr_test)
+}
+mean(all_auc) # area under the curve
+mean(all_acc) # accuracy
+```
+
+
+```{r}
+library(caret)
+d <- tibble(pred = ifelse(predict(hr_dt, newdata = hr_train) > 0.5, 'left', 'stayed') %>%  as.factor,
+            obs = ifelse(hr_train$left == 1, 'left', 'stayed') %>% as.factor)
+confusionMatrix(d$pred, d$obs)
+```
+
+```{r}
+library(pROC)
+d <- tibble(pred = predict(hr_dt, newdata = hr_train),
+            obs = hr_train$left)
+dt_roc_train <- roc(d, obs, pred)
+
+d <- tibble(pred = predict(hr_dt, newdata = hr_test),
+            obs = hr_test$left)
+dt_roc_test <- roc(d, obs, pred, ci = T)
+
+plot(dt_roc_train)
+
+ciobj <- ci.se(dt_roc_test)
+plot(ciobj, type = "shape", col = "#1c61b6AA") 
+plot(dt_roc_test, print.auc = T,
+     ci = T,col = 'firebrick4')
+```
+
+
+## Number of Projects and Satisfaction
+
+```{r}
+library(tidyverse)
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  select(-sales)
+
+d <- hr %>% 
+  mutate(left = ifelse(left == 1, 'Voluntary turnover', 'Stayed'))
+ggplot(d, aes(x = number_project, y = satisfaction_level, color =  left)) +
+  geom_jitter(alpha = 0.3) +
+  scale_color_brewer('Turnover', type = 'qual', palette = 2) +
+  scale_x_continuous('Number of Projects', breaks = 1:7) +
+  scale_y_continuous('Job Satisfaction') +
+  theme_minimal()
+```
+
+```{r}
+lm_proj_satis <- lm(satisfaction_level ~ number_project + I(number_project^2), data = hr)
+summary(lm_proj_satis)
+```
+
+```{r}
+d <- hr %>% 
+  mutate(left = ifelse(left == 1, 'Voluntary turnover', 'Stayed'))
+
+x <- tibble(number_project = seq(2,7,length.out = 100))
+x$pred <- predict(lm_proj_satis, newdata = x)
+ggplot() +
+  geom_jitter(alpha = 0.3, data = d, 
+              aes(x = number_project, y = satisfaction_level, color =  left)) +
+  geom_line(data = x, aes(x = number_project, y = pred)) +
+  scale_color_brewer('Turnover', type = 'qual', palette = 2) +
+  scale_x_continuous('Number of Projects', breaks = 1:7) +
+  scale_y_continuous('Job Satisfaction') +
+  coord_cartesian(xlim = c(2, 7), ylim = c(0, 1)) +
+  theme_minimal()
+```
+
+## Random Forest as in report
+
+```{r}
+library(tidyverse)
+library(randomForest)
+
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  select(-sales) %>% 
+  mutate(left = as.factor(left))
+```
+
+```{r}
+hr_rf <- randomForest(left ~ ., data = hr,
+                      importance = T, ntree = 100,
+                      localImp = T)
+varImpPlot(hr_rf)
+
+importance(hr_rf)
+```
+
+## Random Forest Explainer
+https://cran.rstudio.com/web/packages/randomForestExplainer/vignettes/randomForestExplainer.html
+
+```{r}
+library(randomForestExplainer)
+
+min_depth <- min_depth_distribution(hr_rf)
+plot_min_depth_distribution(min_depth)
+```
+
+```{r}
+importance_frame <- measure_importance(hr_rf)
+plot_multi_way_importance(importance_frame, size_measure = "no_of_nodes")
+
+```
+
+
+
+## Replicating the distplot
+
+```{r}
+p1 <- ggplot(hr, aes(x = satisfaction_level, y = ..density..)) + 
+  geom_histogram(binwidth = 0.02, fill = '#b6c6df', color = 'white') + 
+  geom_density(color = '#5a71a2') + 
+  scale_x_continuous(limits = c(0,1)) +
+  theme_classic()
+p2 <- ggplot(hr, aes(x = last_evaluation, y = ..density..)) + 
+  geom_histogram(binwidth = 0.02, fill = '#b6c6df', color = 'white') + 
+  geom_density(color = '#5a71a2') + 
+  scale_x_continuous(limits = c(0,1)) +
+  theme_classic()
+p3 <- ggplot(hr, aes(x = average_montly_hours, y = ..density..)) + 
+  geom_histogram(binwidth = 5, fill = '#b6c6df', color = 'white') + 
+  geom_density(color = '#5a71a2') +
+  scale_x_continuous() +
+  theme_classic()
+
+library(gridExtra)
+
+grid.arrange(p1, p2, p3, nrow = 1)
+
+```
+
+## Logistic Regression
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  select(-sales)
+
+hrs <- hr %>% 
+  mutate_at(c('satisfaction_level', 'last_evaluation',
+              'number_project','average_montly_hours',
+              'salary','time_spend_company', 'salary'), 
+            .funs = function(x) as.numeric(scale(x)))
+
+hr_log <- glm(left ~ ., data = hrs, family = 'binomial')
+```
+
+Coefficient plot for the logistic regression
+
+```{r}
+d1 <- coef(hr_log) %>% 
+  exp %>% 
+  as.data.frame %>% 
+  as_tibble(rownames = 'variable')
+colnames(d1) <- c('variable', 'coef')
+d2 <- confint(hr_log) %>% 
+  exp %>% 
+  as.data.frame %>% 
+  as_tibble(rownames = 'variable')
+colnames(d2) <- c('variable', 'lower', 'upper')
+hr_log_coef <- left_join(d1, d2)
+
+ggplot(hr_log_coef) +
+  geom_vline(xintercept = 1) +
+  geom_point(aes(x = coef, y = variable)) +
+  geom_segment(aes(x = lower, xend = upper, y = variable, yend = variable)) +
+  theme_minimal() +
+  theme()
+```
+
+Use fake data to explore the model results.
+
+```{r}
+d1 <- hrs %>% summarize_all(mean)
+d2 <- expand.grid(promotion_last_5years = c(0,1), time_spend_company = seq(0,10,0.5))
+d1 <- d1[rep(1, nrow(d2)),]
+d1$promotion_last_5years <- d2$promotion_last_5years
+d1$time_spend_company <- d2$time_spend_company
+
+d1$pred <- predict(hr_log, newdata = d1, type = 'response')
+d1$promotion_last_5years <- as.factor(d1$promotion_last_5years)
+
+ggplot(d1, aes(x = time_spend_company, y = pred, color = promotion_last_5years)) +
+  geom_line()
+```
+
+```{r}
+library(iml)
+
+log_pred <- function(model, newdata)  {
+  results <- predict(model, newdata = newdata, type = 'response')
+  return(results)
+}
+log_pred(hr_log, hrs) %>% head
+
+p <- Predictor$new(hr_log, 
+                   data = select(hrs, -left), 
+                   y = hrs$left, predict.fun = log_pred,
+                   class = 'classification')
+imp <- FeatureImp$new(p, loss = "mse")
+plot(imp)
+
+
+```
+
+```{r}
+hr_log_pdp <- FeatureEffect$new(p, method = 'pdp',
+                                 feature = "salary", 
+                                 center.at = min(hrs$salary),
+                                 grid.size = 20)
+plot(hr_log_pdp) + theme_bw()
+```
+
+
+## Department Satisfaction histogram
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  mutate(department = sales) %>% 
+  mutate(department = fct_infreq(department)) %>% 
+  mutate(left = as.factor(left))
+
+ggplot(hr, aes(x = satisfaction_level, fill = left, y = ..density..)) +
+  geom_histogram(position = 'identity', alpha = 0.5, 
+                 color = 'white', binwidth = 0.05) +
+  scale_fill_brewer('Left',type = 'qual', palette = 2) +
+  scale_x_continuous('Satisfaction Level') +
+  facet_wrap(~ department) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(hr, aes(x = number_project, fill = left, y = ..prop..)) +
+  geom_bar(position = 'identity', alpha = 0.5, 
+                 color = 'white') +
+  scale_fill_brewer('Left',type = 'qual', palette = 2) +
+  scale_x_continuous('Number of Projects') +
+  facet_wrap(~ department, nrow = 2) +
+  theme_minimal()
+
+ggplot(hr, aes(x = number_project, y = ..prop..)) +
+  geom_bar(position = 'identity', alpha = 0.5, 
+                 color = 'white') +
+  scale_x_continuous('Number of Projects') +
+  facet_grid(department ~ left) +
+  theme_minimal()
+```
+
+
+## An Isomap
+
+```{r}
+library(vegan)
+
+d <- iris %>% 
+  dummy_cols(select_columns = 'Species', 
+             remove_first_dummy = T, ) %>% 
+  select(-Species)
+
+iris_dist <- vegdist(d)
+
+ord <- isomap(iris_dist, epsilon = 0.18)
+ord
+pl <- plot(ord, main="isomap epsilon = 0.2")
+```
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3))
+
+d <- hr %>% 
+  select(-left) %>% 
+  select_if(is.numeric) %>% 
+  sample_n(200)
+
+```
+
+## Job Satisfaction by Salary and Tenure
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = factor(salary, levels = c('low', 'medium', 'high'))) %>% 
+  select(salary, satisfaction_level, tenure = time_spend_company)
+
+hr %>% 
+  group_by(salary, tenure) %>% 
+  summarize(satisfaction_level = mean(satisfaction_level)) %>% 
+  ggplot() +
+  geom_line(aes(x = tenure, y = satisfaction_level, color = salary))
+
+```
+
+## Productivity and Mangement
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,salary == "medium" ~ 2,salary == "high" ~ 3)) %>% 
+  mutate(management = ifelse(sales == 'management', 'management', 'not management')) %>% 
+  mutate(management = as.factor(management)) %>% 
+  mutate(hourly_salary = salary / average_montly_hours) %>% 
+  mutate(productivity = number_project / average_montly_hours)
+
+
+ggplot(hr) +
+  geom_histogram(aes(x = hourly_salary), bins = 100, color = 'white', size = 0.2)
+ggplot(hr) +
+  geom_histogram(aes(x = productivity), bins = 100, color = 'white', size = 0.2)
+
+ggplot(hr, aes(x = hourly_salary, fill = management, y = ..density..)) +
+  geom_histogram(position = 'identity', alpha = 0.5, 
+                 color = 'white') +
+  scale_fill_brewer('Management',type = 'qual', palette = 2) +
+  scale_x_continuous('Salary per Monthly Hour') +
+  theme_minimal()
+
+ggplot(hr, aes(x = productivity, fill = management, y = ..density..)) +
+  geom_histogram(position = 'identity', alpha = 0.5, 
+                 color = 'white') +
+  scale_fill_brewer('Management',type = 'qual', palette = 2) +
+  scale_x_continuous('Productivity \n (number of projects / average hour worked)') +
+  theme_minimal()
+
+t.test(productivity ~ management, data = hr)
+
+ggplot(hr, aes(x = productivity, y = hourly_salary, color = management)) +
+  geom_point()
+
+```
+
+```{R Test tube}
+a <- table(hr_new_oversample$satisfaction_level)
+b <- table(hr_new_oversample$last_evaluation)
+
+```
+
+```{R Testing center}
+m <- cmdscale(hr_new_oversample) %>% 
+  as.data.frame() %>% 
+  rownames_to_column(var = 'provider') 
+
+ggplot(m, aes(x = satisfaction_level)) +
+  geom_point
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

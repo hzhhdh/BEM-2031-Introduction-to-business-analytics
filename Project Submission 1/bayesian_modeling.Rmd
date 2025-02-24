@@ -1,0 +1,64 @@
+---
+title: "Bayes is fun"
+output: 
+  html_document: 
+    theme: flat
+    toc: yes
+    toc_float: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(brms)
+library(tidyverse)
+library(tidybayes)
+library(LaplacesDemon)
+```
+
+https://www.jamesrrae.com/post/bayesian-logistic-regression-using-brms-part-1/
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  rename(department =  sales) %>% 
+  mutate(department = fct_infreq(department)) %>% 
+  mutate(number_project2 = number_project^2)
+```
+
+```{r}
+cor.test(hr$satisfaction_level, hr$left)
+hr$sat_z <- scale(hr$satisfaction_level) %>% as.numeric
+```
+
+```{r}
+x_values <- seq(-15,15, length.out = 1000)
+data.frame(x_values) %>%
+ggplot(aes(x_values))+
+  stat_function(fun=dst, args=list(nu=3,mu=0,sigma=2.5))
+```
+
+
+```{r}
+m1_priors <- c(
+  prior(student_t(3, 0, 2.5), class = "Intercept"),
+  prior(student_t(3, 0, 2.5), class = "b")
+)
+```
+
+```{r}
+hr_small <- unique(hr) %>% 
+  sample_n(1000)
+m1 <- brm(
+  left ~ sat_z,
+  data = hr_small,
+  prior = m1_priors,
+  family = "bernoulli",
+  seed = 123) 
+```
+
+
+
+

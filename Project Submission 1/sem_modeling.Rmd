@@ -1,0 +1,44 @@
+---
+title: "Structural Equation Model Leavers"
+output: 
+  html_document: 
+    theme: flat
+    toc: yes
+    toc_float: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(lavaan)
+library(lavaanPlot)
+library(tidyverse)
+```
+
+
+```{r setup, include=FALSE}
+hr <- read_csv('./kaggle_hr_analytics.csv') %>% 
+  mutate(salary = case_when(salary == "low" ~ 1,
+                            salary == "medium" ~ 2,
+                            salary == "high" ~ 3)) %>% 
+  rename(department =  sales) %>% 
+  mutate(department = fct_infreq(department)) %>% 
+  mutate(number_project2 = number_project^2)
+```
+
+
+```{r setup, include=FALSE}
+m <- '
+satisfaction_level ~ sl_np * number_project + sl_np2 * number_project2 + sl_le * last_evaluation
+number_project ~ np_le * last_evaluation
+number_project2 ~ np2_le * last_evaluation
+last_eval_sat_level := (sl_np * np_le) + (sl_np2 * np2_le)
+'
+
+f <- sem(m, data = hr)
+
+summary(f)
+
+lavaanPlot(model = f, coefs = T, stars = T)
+
+```

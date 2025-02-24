@@ -1,0 +1,127 @@
+---
+title: "Final Assessment Markdown"
+author: "Haw Dong Ho"
+date: "15/04/2021"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+gc()
+
+library(tidyverse)
+library(corrplot)     
+library(randomForest)
+library(knitr)
+library(kableExtra)
+library(pbapply)
+library(Matrix)
+library(factoextra)
+library(xgboost)
+library(fastDummies)
+library(ggrepel)
+library(glmnet)
+library(janitor)
+library(ROSE)
+library(rpart)
+library(pROC)
+library(randomForest)
+library(caret)
+```
+
+```{r}
+hr <- read_csv('./kaggle_hr_analytics.csv')
+hr$left <- as.factor(hr$left)
+summary(hr$left)
+```
+
+```{r dummies}
+library(fastDummies)
+hr <- dummy_cols(hr, select_columns = c('salary', 'sales'))
+```
+
+```{r test and train}
+samples <- sample(seq(1,2), size = nrow(hr), replace = TRUE, prob = c(0.8, 0.2))
+Train <- hr[samples == 1,]
+Test <- hr[samples == 2,]
+```
+
+```{R as character & factor}
+Train$left <- as.factor(Train$left)
+Test$left <- as.factor(Test$left)
+```
+
+```{R random forest}
+rf <- randomForest(left ~., data = Train, ntree = 1000, mtry = 5)
+print(rf)
+```
+
+```{R confusion matrix}
+rf$confusion [,-3] %>% 
+  as.table %>% 
+  confusionMatrix()
+```
+
+```{R as list}
+Train <- as.tibble(Train)
+Test <- as.tibble(Test)
+```
+
+```{R ROC curve Prep}
+p <- predict(rf, newdata = Train, type = "prob") [,2] %>% 
+  as.numeric
+Train_roc <- roc(Train$left, p)
+auc(Train_roc)
+
+q <- predict(rf, newdata = Test, type = "prob") [,2] %>% 
+  as.numeric
+Test_roc <- roc(Test$left, q)
+auc(Test_roc)
+
+```
+
+```{R ROC as list}
+Auc_plot <- plot(roc(Train$left, p), print.auc = TRUE, col = "green")
+
+Auc_plot <- plot(roc(Test$left, q), print.auc = TRUE, col = "blue", add = TRUE)
+
+AUC_plot <- title(main = "ROC plot for training and testing set")
+
+```
+
+```{R varimplot}
+varImpPlot(rf)
+```
+
+```{R random select}
+d <- Train[100,]
+predict(rf, newdata = d, type = "prob")
+```
+
+```{R satisfaction}
+d$satisfaction_level <- 100
+predict(rf, newdata = d, type = "prob")
+```
+
+```{R Image}
+N <- 10000
+L <- seq(min(Train$satisfaction_level),
+max(Train$satisfaction_level),
+length.out = N)
+dn <- d %>%
+  mutate(n = N) %>%
+  uncount(n) %>%
+  mutate(satisfaction_level = L)
+dn$pred <- predict(rf, newdata = dn, type = "prob") [,2]
+```
+
+```{R Final Plot}
+ggplot(dn, aes(x = satisfaction_level, y = pred)) +
+  geom_line() +
+  coord_cartesian(xlim = c(0.09,1)) +
+  labs(title = "The relationship between satisfaction level and probability of leaving'") +
+  xlab("Satisfaction level") +
+  ylab("Probability of leaving")
+```

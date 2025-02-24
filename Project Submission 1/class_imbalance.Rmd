@@ -1,0 +1,47 @@
+---
+title: "class imbalance"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(smotefamily)
+library(tidyverse)
+```
+
+```{r}
+data_example = sample_generator(5000,ratio = 0.80)
+ggplot(data_example, aes(x = X1, y = X2, color = result)) +
+  geom_point()
+```
+
+
+```{r}
+genData = BLSMOTE(data_example[,-3],data_example[,3])
+ggplot(genData$data, aes(x = X1, y = X2, color = class)) +
+  geom_point()
+```
+
+```{r}
+genData = DBSMOTE(data_example[,-3],data_example[,3])
+ggplot(genData$data, aes(x = X1, y = X2, color = class)) +
+  geom_point()
+```
+
+```{r}
+genData_2 = BLSMOTE(data_example[,-3],data_example[,3],K=7, C=5, method = "type2")
+ggplot(genData_2$data, aes(x = X1, y = X2, color = class)) +
+  geom_point()
+```
+
+```{r}
+genData = ADAS(data_example[,-3],data_example[,3])
+ggplot(genData$data, aes(x = X1, y = X2, color = class)) +
+  geom_point()
+genData_2 = ADAS(data_example[,-3],data_example[,3],K=7)
+ggplot(genData_2$data, aes(x = X1, y = X2, color = class)) +
+  geom_point()
+```
+
+
