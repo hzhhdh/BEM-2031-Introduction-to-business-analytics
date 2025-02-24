@@ -1,0 +1,199 @@
+---
+title: 'Homework 02: But With Youtube Spam'
+author: "Tulio C. Alberto"
+date: "2021-03-12T15:00:00 GMT"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: flatly
+    toc: yes
+    toc_float: yes
+editor_options:
+  chunk_output_type: console
+---
+
+# 0. Data
+
+```{r packages, include = F}
+rm(list = ls()) # clear all the data from your environment
+library(tidyverse) # data manipulation
+library(ggplot2) # visualization 
+library(randomForest) # random forests
+library(pROC) # for ROC and AUC
+library(caret) # for accuracy and confusion matrix
+set.seed(42)
+```
+
+The data comes from a freely available source here: <http://www.dt.fee.unicamp.br/~tiago//youtubespamcollection/>
+
+Alberto, T. C., Lochter, J. V., & Almeida, T. A. 2015. TubeSpam: Comment Spam Filtering on YouTube. 2015 IEEE 14th International Conference on Machine Learning and Applications (ICMLA), 138–143. ieeexplore.ieee.org.
+
+```{r load_data}
+load('./youtube_spam_train_test.rda')
+yt_ling_train$Segment <- NULL
+yt_ling_test$Segment <- NULL
+glimpse(yt_ling_train)
+summary(yt_ling_train)
+head(yt_ling_train)
+```
+
+# 1. Fit a Random Forest model
+
+Our outcome variable is `class`. Provide a quick look at the distribution of `class` for the training data and test data. 
+
+```{r class_dist}
+count(yt_ling_train, class)
+count(yt_ling_test, class)
+```
+
+Comparing the distribution of the outcome variable in training and test, do they look balanced?
+
+> The training set looks balanced. The test set looks imbalanced, but it won't impact the model training process.
+
+Fit a random forest model to predict `class`.
+
+```{r fit_rf}
+rf <- randomForest(class ~ ., data = yt_ling_train)
+```
+
+Examine the results. 
+
+```{r examine_rf}
+print(rf)
+```
+
+What is the out-of-box error rate?
+
+> OOB estimate of error rate 17.3% showing an effective prediction.
+
+# 2. Compute and Compare Predictive Performance
+
+Use the `confusionMatrix` function to compute several metrics of predictive performance.
+
+```{r confusion_matrix}
+rf$confusion[,-3] %>% 
+  as.table %>% 
+  confusionMatrix()
+```
+
+How would you describe the performance of this model?
+
+> The accuracy is 82.7%, which is pretty good. The model is more specific than sensitive. The model is somewhat better at predicting non-spam comments than spam comments. 
+
+The confusion matrix assumed a 0.50 cutoff for prediction. Now create a ROC plot and compute the AUC for the training set.
+
+```{r train_roc}
+p <- predict(rf, newdata = yt_ling_train, type = "prob")[,2] %>% 
+  as.numeric
+yt_train_roc <- roc(yt_ling_train$class, p)
+auc(yt_train_roc)
+plot(yt_train_roc)
+```
+
+Now create a ROC chart for the test set and compute the test AUC.
+
+```{r test_roc}
+p <- predict(rf, newdata = yt_ling_test, type = "prob")[,2] %>% 
+  as.numeric
+yt_test_roc <- roc(yt_ling_test$class, p)
+auc(yt_test_roc)
+plot(yt_test_roc)
+```
+
+Is the model underfit, overfit, or correctly fit to the data? 
+
+> The model is somewhat overfit. The test-AUC is 0.09 lower than the train-AUC indicating that the mdoel overfit to the training data.
+
+# 3. Examine the model
+
+Examine the variable importance of the model.
+
+```{r var_imp}
+varImpPlot(rf)
+```
+
+Make some individual predictions of the model. Choose one case from the data and see what the model predicts for that one person.
+
+```{r predict_one}
+d <- yt_ling_train[8,]
+predict(rf, newdata = d, type = "prob")
+```
+
+Using the *most important* variable from the plot above, change the value of that variable to something new and make a new prediction for that one case (i.e. set the value to something very small, or very large). How does the prediction change?
+
+```{r predict_new}
+d$Sixltr <- 10
+predict(rf, newdata = d, type = "prob")
+```
+
+Let's now try and predict the outcome for this case if that important variable was changed from it's minimum value to it's maximum value.
+
+1. Create a grid of at least 100 points from the minimum value to the maximum value. 
+2. Duplicate the case you used above the same number of times
+3. Add the grid of points to the data
+4. Predict the outcome using this new fake data and save the predicted probability in the dataset.
+
+```{r create_fake_data}
+N <- 1000
+g <- seq(min(yt_ling_train$Sixltr), 
+         max(yt_ling_train$Sixltr),
+         length.out = N)
+dn <- d %>% 
+  mutate(n = N) %>% 
+  uncount(n) %>% 
+  mutate(Sixltr = g)
+dn$pred <- predict(rf, newdata = dn, type = "prob")[,2]
+```
+
+Now plot the results of that sequential grid against the predicted probability. How do see the probability of responding the mailer change in response to the variable? Tip: You can use `coord_cartesian` to change the xlimits to focus on specific areas of detail if you want.
+
+```{r plot_fake_data}
+ggplot(dn, aes(x = Sixltr, y = pred)) +
+  geom_line() +
+  coord_cartesian(xlim = c(0, 100)) +
+  xlab("Percent of words that are six letters or longer") +
+  ylab("P(spam)")
+```
+
+```{r}
+ggplot(yt_ling_train, aes(x = Sixltr)) +
+  geom_density()
+```
+
+
+## Bonus: Use IML to create a PDP+ICE chart
+
+Use the `iml` package to create an [individual conditional expectations](https://christophm.github.io/interpretable-ml-book/ice.html#ice) combined with partial dependence chart.
+
+It's highly recommended that you only provide the prediction object a subset of the data. I'm not sure the RStudio Cloud instance can take the full data and it will take a very long time. Use `coord_cartesian` to focus the y-limit range to focus the chart to a region where you can observe the effect (it's tiny!).
+
+```{r iml}
+library(iml)
+d <- sample_n(yt_ling_train, 100)
+yt_pred <- Predictor$new(model = rf, data = d,
+                         y = d$class, type = "prob")
+yt_effect <- FeatureEffect$new(yt_pred, 
+                               grid.size = 100,
+                               method = "pdp+ice",
+                               feature = "Sixltr")
+yt_effect$plot() +
+  # coord_cartesian(ylim = c(0.3, 0.8)) +
+  xlab("Percent of words that are six letters or longer") +
+  ylab("P(spam)")
+```
+
+# 4. Summarize
+
+What are your thoughts on the impact of these different features on the likelihood for a person to respond to our donation requests? (100-200 words)
+
+> To reduce overfitting I would regularize the random forest by trying to find a good mtry parameter value so that the test and train AUC are more similar. This could impact trainin performance, but improve test performance. Real commenters tend to use shorter words. User data about where they post and when. Do they typicaly post comments like this? Are all the same? 
+
+Things you could write about:
+
+* What changes would you make to the modeling approach to improve the predictions? 
+* What recommendations would you make to the organization? 
+* What other kinds of data would be useful in improving these predictions?
+
+
+

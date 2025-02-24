@@ -1,0 +1,197 @@
+---
+title: "Homework 02"
+author: "680011465"
+date: "2021-03-12T15:00:00 GMT"
+output:
+  pdf_document:
+    toc: yes
+    latex_engine: xelatex
+  html_document:
+    theme: flatly
+    toc: yes
+    toc_float: yes
+editor_options:
+  chunk_output_type: console
+---
+\pagebreak
+# 0. Data
+```{r packages, include = F}
+rm(list = ls()) # clear all the data from your environment
+library(tidyverse) # data manipulation
+library(ggplot2) # visualization 
+library(randomForest) # random forests
+library(pROC) # for ROC and AUC
+library(caret) # for accuracy and confusion matrix
+set.seed(42)
+```
+
+We're going to use a mail response data set from a real direct marketing campaign located in mailing.csv. Each record represents an individual who was targeted with a direct marketing offer. The offer was a solicitation to make a charitable donation. This data was provided by the authors of our textbook, and I'm not sure of the original source.
+
+The columns (features) are:
+```
+income       household income
+Firstdate    data assoc. with the first gift by this individual
+Lastdate     data associated with the most recent gift 
+Amount       average amount by this individual over all periods
+rfaf2        frequency code
+rfaa2        donation amount code
+pepstrfl     flag indicating a star donator
+glast        amount of last gift
+gavr         amount of average gift 
+class        outcome variable, 1 if they gave donation
+```
+
+The target variables is class and is equal to one if they gave in this campaign and zero otherwise.
+```{r load_data}
+load('./mailing_train_test.RData')
+glimpse(mailing_train)
+```
+
+# 1. Fit a Random Forest model
+Our outcome variable is `class`. Provide a quick look at the distribution of `class` for the training data and test data. 
+```{r class_dist}
+summary(mailing_train$class)
+summary(mailing_test$class)
+```
+ 
+Comparing the distribution of the outcome variable in training and test, do they look balanced?
+>**According to the mailing_train data, it shows that 2000 individuals donate and 2000 individuals did not donate. Thus, this data is balance. **
+>**According to the mailing_test data, it shows that 53 individuals donate and 947 individuals did not donate. Thus, this data is not balance. **
+
+Fit a random forest model to predict `class`.
+```{r fit_rf}
+rf <- randomForest(class ~., data = mailing_train, ntree = 1000, mtry = 5)
+```
+
+Examine the results. 
+```{r examine_rf}
+print(rf)
+```
+
+What is the out-of-box error rate?
+>**The default number of tree is 500 and the default number of variables tried at each split is 3. However, I have decided to go further by increasing the amount of trees to 1000 and the number of variables tried at each split to 5. The out-of-box/out-of-bag estimate error rate is 42.02%. This estimate error is decent but not optimal.**
+
+# 2. Compute and Compare Predictive Performance
+Use the `confusionMatrix` function to compute several metrics of predictive performance.
+```{r confusion_matrix}
+rf$confusion[,-3] %>% 
+  as.table %>% 
+  confusionMatrix()
+```
+
+How would you describe the performance of this model?
+> **The accuracy of the model is 57.98% with a 95% confidence interval bounded at 56.43% and 59.51%. Thus, I would say the accuracy is quite decent. The value for sensitivity is 58.17%, while the value fo r specificity is 57.79%; therefore the data is more sensitive than specific. Furthermore, the data is slightly better at predicting people who donate than people who do not donate.**
+
+The confusion matrix assumed a 0.50 cutoff for prediction. Now create a ROC plot and compute the AUC for the training set.
+```{r train_roc}
+p <-predict(rf, newdata = mailing_train, type = "prob") [,2] %>% 
+  as.numeric
+mailing_train_roc <- roc(mailing_train$class, p)
+auc(mailing_train_roc)
+plot(mailing_train_roc, main = "ROC plot for training set")
+```
+
+Now create a ROC chart for the test set and compute the test AUC.
+```{r test_roc}
+g <-predict(rf, newdata = mailing_test, type = "prob") [,2] %>% 
+  as.numeric
+mailing_test_roc <- roc(mailing_test$class, g)
+auc(mailing_test_roc)
+plot(mailing_test_roc, main = "ROC plot for test set")
+```
+>**I decide to combine the ROC plot for both the training set and the test set to make it easier to see the difference.**
+
+```{r ROC plot for training and test set}
+auc_plot <- plot(roc(mailing_train$class, p), print.auc = TRUE, col = "green")
+auc_plot <- plot(roc(mailing_test$class, g), print.auc = TRUE, col = "blue", add = TRUE)
+auc_plot <- title(main = "ROC plot for training set and test set")
+```
+
+Is the model underfit, overfit, or correctly fit to the data? 
+> **The AUC of mailing_train has a excellent value of 99.60%, while the AUC of mailing_test has an acceptable value of 65.04%. Comparing the gaps between the test and training set, the difference between mailing_train and mailing_test is 34.56%, which suggest that the model over-fits the data.**  
+
+# 3. Examine the model
+Examine the variable importance of the model.
+```{r var_imp}
+varImpPlot(rf)
+```
+>**The most important variable is 'gavr', which indicates the amount of average gift that a individual gives.**
+
+Make some individual predictions of the model. Choose one case from the data and see what the model predicts for that one person.
+```{r predict_one}
+d <- mailing_train[20,]
+predict(rf, newdata = d, type = "prob")
+```
+
+Using the *most important* variable from the plot above, change the value of that variable to something new and make a new predicting for that one case (i.e. set the value to something very small, or very large). How does the prediction change?
+```{r predict_new}
+d$gavr <- 20
+predict(rf, newdata = d, type = "prob") 
+
+d$gavr <- 80
+predict(rf, newdata = d, type = "prob")
+```
+>**If I set the value to 20, there is a 69.8% chance that the individual will donate. If I set the value to 80, there is a 64% chance that the individual will donate. Thus, we can say that this individual is likely to donate in all cases** 
+
+Let's now try and predict the outcome for this case if that important variable was changed from it's minimum value to it's maximum value.
+1. Create a grid of at least 100 points from the minimum value to the maximum value. 
+2. Duplicate the case you used above the same number of times
+3. Add the grid of points to the data
+4. Predict the outcome using this new fake data and save the predicted probability in the dataset.
+```{r create_fake_data}
+N <- 10000
+L <- seq(min(mailing_train$gavr),
+    max(mailing_train$gavr),
+    length.out = N)
+dn <- d %>% 
+  mutate(n = N) %>% 
+  uncount(n) %>% 
+  mutate(gavr = L)
+dn$pred <- predict(rf, newdata = dn, type = "prob") [,2]
+```
+
+Now plot the results of that sequential grid against the predicted probability. How do see the probability of responding the mailer change in response to the variable? Tip: You can use `coord_cartesian` to change the xlimits to focus on specific areas of detail if you want.
+```{r plot_fake_data}
+ggplot(dn, aes(x = gavr, y = pred)) +
+  geom_line() +
+  coord_cartesian(xlim = c(5,30)) +
+  labs(title = "The probability of donating in response to the variable 'gavr'") +
+  xlab("the average amount of gift that an individual give") +
+  ylab("the probability of donating")
+```
+
+## Bonus: Use IML to create a PDP+ICE chart
+Use the `iml` package to create an [individual conditional expectations](https://christophm.github.io/interpretable-ml-book/ice.html#ice) combined with partial dependence chart.
+It's highly recommended that you only provide the prediction object a subset of the data. I'm not sure the RStudio Cloud instance can take the full data and it will take a very long time. Use `coord_cartesian` to focus the y-limit range to focus the chart to a region where you can observe the effect (it's tiny!).
+
+```{r iml}
+library(iml)
+A <- sample_n(mailing_train, 110)
+mailing_pred <- Predictor$new(model = rf, data = A, y = A$class, type = "prob")
+
+mailing_effect <- FeatureEffect$new(mailing_pred, grid.size = 100, method = "pdp+ice", feature = "gavr")
+
+mailing_effect$plot() +
+  coord_cartesian(ylim = c(0.455,0.535))+
+  xlab("the average amount of gift that an individual give") +
+  ylab("the probability of donating") +
+  labs(title = "The probability of donating in response to the variable 'gavr")
+```
+
+# 4. Summarize
+
+What are your thoughts on the impact of these different features on the likelihood for a person to respond to our donation requests? (100-200 words)
+
+Things you could write about:
+
+* What changes would you make to the modeling approach to improve the predictions? 
+* What recommendations would you make to the organization? 
+* What other kinds of data would be useful in improving these predictions?
+
+>**One changes I would make to the modeling approach to introduce a 'Four-fold cross validation' to improve prediction. What this method does is to divided the training data into 4 blocks. I will select 1 block for the validation and 3 blocks for testing. This action will be repeated when every single block is validated. By completing the 'four-hold cross validation', we can further confirm whether the data is overfitted and make suitable adjustments to the data. **
+
+>**Base on the model that shows the average amount of gift that an individual give and the probability of donating, suggest that if the individual donates on average the value of 15 or above, there is a chance of more than 50% of the individual would donate**
+
+>**Text analytics on email response would be a useful data in improving these predictions. For example, data analyst can use term frequency to helps to identify and categorize individuals base on common terminologies that they type in an email and predict whether the individuals will donate.**
+
+
